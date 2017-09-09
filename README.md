@@ -1,2 +1,2 @@
-# CSC527-0HWS
+# CSC527-HWS
 Homeworks for software construction CSC527.
