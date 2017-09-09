@@ -64,7 +64,7 @@ public class Game {
     /**
      * Finds the total number of rolls in the values of the map.
      * Experimenting with java 8 lambdas seem to be more efficient
-     * than regular for each loop as discussed here :
+     * than regular for-each loop as discussed here :
      * https://stackoverflow.com/a/35558955
      *
      * @return the sum of values in the chosenvalues map.
@@ -77,7 +77,7 @@ public class Game {
 
     /**
      * Checks if the scoreboard is already full atleast once. Iterates through the values and even if one
-     * value is '0', then the method returns false.
+     * value is '0' then the method returns false.
      *
      * @return True if full, False otherwise.
      */

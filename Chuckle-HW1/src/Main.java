@@ -1,12 +1,16 @@
 import java.util.Scanner;
 
 /**
- * Main class where the game is run.
+ * Main class where the game is run. This contains the text GUI where the game is
+ * setup to run at the end user level.
  */
 public class Main {
 
     public static void main(String[] args) {
+        // Start a new game.
         Game game = new Game();
+
+        //used to seek for user inputs.
         Scanner reader = new Scanner(System.in);
         System.out.println("Welcome to playing Chuckles. Here are your options:");
 
