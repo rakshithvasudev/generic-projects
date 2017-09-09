@@ -40,7 +40,8 @@ public class Game {
 
     /**
      * Updates the scoreboard map. Adds 1 to the value of the map of the key "sumOfRolledDice".
-     * Before updating the value to the scoreboard, the  
+     * Before updating the value to the scoreboard, the function checks if already the scoreboard is full
+     * atleast once. If it's full, the game stops otherwise it adds to the scoreboard.
      * @param sumOfRolledDice key to update the scoreboard.
      */
     private void updateScoreBoard(int sumOfRolledDice) {
@@ -52,8 +53,18 @@ public class Game {
         }
     }
 
-    private void checkForFullScore() {
-
+    /**
+     * Checks if the scoreboard is already full atleast once. Iterates through the values and even if one
+     * value is '0', then the method returns false.
+     * @return True if full, False otherwise.
+     */
+    private boolean checkForFullScore() {
+        for (Object o : chosenValues.values()) {
+            if (((int) o == 0)) {
+                return false;
+            }
+        }
+        return true;
     }
 
 
