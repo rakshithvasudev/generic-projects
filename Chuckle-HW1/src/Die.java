@@ -1,7 +1,11 @@
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Created by Rakshith on 9/7/2017.
+ * Created by Rakshith on 9/7/2017. This class represents a single Die
+ * In the game with features such as roll and generate random numbers like a real
+ * die whose values can end up anywhere between 1 to 6. Plumbing code methods such as hashcode
+ * and equals are already implemented to ensure the smooth operations of hashing and
+ * reference semantics in this class.
  */
 public class Die {
     private int faceValue;
