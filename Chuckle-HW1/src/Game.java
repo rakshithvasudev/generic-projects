@@ -2,7 +2,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Rakshith on 9/7/2017.
+ * Created by Rakshith on 9/7/2017 for CSC527 - Software Construction
+ * Assignment. This class contains the entire chuckle game
+ * elements including the dice rolls, chosen values aka the scoreboard,
+ *
+ *
  */
 public class Game {
     private static int rollsCounter;
