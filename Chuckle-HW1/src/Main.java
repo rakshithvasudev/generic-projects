@@ -14,9 +14,8 @@ public class Main {
         Scanner reader = new Scanner(System.in);
         System.out.println("Welcome to playing Chuckles. Here are your options:");
 
-        /**
-         * Keeps looping forever either until the user quits the game or user finishes the game.
-         */
+
+        // Keeps looping forever either until the user quits the game or user finishes the game.
         while (true){
             System.out.println("1. Roll Dice\n2. View scoreboard\n3. Exit Game: \n");
             int option = reader.nextInt();
