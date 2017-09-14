@@ -49,7 +49,7 @@ public class Main {
                     }
                 }
 
-                // Display scoreboard method display's the value of the scores.
+                // This method display's the value of the scores.
             } else if (option == 2) game.displayScoreBoard();
 
                 // exits the game. Returns the control to OS.
