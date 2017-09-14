@@ -25,6 +25,8 @@ public class Game {
 
     /**
      * Starts the game by initializing the scoreboard - chosenvalues.
+     * All the keys of the map are the face values of the dice, while the values of the
+     * map are the number of times it was rolled. To begin the game, the keys are initialized to 0's.
      */
     private void initializeGame() {
         for (int i = 2; i <= 12; i++)
