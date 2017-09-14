@@ -33,13 +33,14 @@ public class Game {
 
     /**
      * Gets Dice rolls values.
+     *
      * @returns the random values of dice rolls.
      */
     public int[] rollDice() {
         int die1Value = die1.roll(), die2Value = die2.roll();
-        int[] diceValues = {die1Value,die2Value};
-        int sumOfDice = die1Value+die2Value;
-        System.out.println("The rolled dice values are : (" + die1Value + ", " + die2Value + ") => "+ sumOfDice);
+        int[] diceValues = {die1Value, die2Value};
+        int sumOfDice = die1Value + die2Value;
+        System.out.println("The rolled dice values are : (" + die1Value + ", " + die2Value + ") => " + sumOfDice);
         return diceValues;
     }
 
@@ -98,11 +99,11 @@ public class Game {
     /**
      * Displays the scoreboard.
      */
-    public void displayScoreBoard(){
+    public void displayScoreBoard() {
         if (gameFinished)
-            System.out.println("Finished Scoreboard is as follows: "+ chosenValues +"\n \n");
+            System.out.println("Finished Scoreboard is as follows: " + chosenValues + "\n \n");
         else
-            System.out.println("Current Scoreboard is as follows: "+ chosenValues +"\n \n");
+            System.out.println("Current Scoreboard is as follows: " + chosenValues + "\n \n");
     }
 
 }

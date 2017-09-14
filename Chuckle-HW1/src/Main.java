@@ -36,7 +36,14 @@ public class Main {
                     } else if (lock == 1) {
                         System.out.println("Which die face value you want? 1 or 2? \n");
                         diceSelection = reader.nextInt();
-                        game.updateScoreBoard(diceRollsValues[diceSelection - 1]);
+                        // make sure the user entered the right value for the input.
+                        if(diceSelection == 1 || diceSelection == 2)
+                            // update the map with the request value from the dice.
+                            game.updateScoreBoard(diceRollsValues[diceSelection - 1]);
+                        else{
+                            System.out.println("You have to enter either 1 or 2. No other values. \n");
+                            return;
+                        }
                     }
 
                 }
