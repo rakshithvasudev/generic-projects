@@ -13,11 +13,13 @@ public class Game {
     // example :{2:0,3:1,4:2......12:4}, Here 2: is rolled 0 times, while 12 was rolled 4 times.}
     private Map<Integer, Integer> chosenValues;
     private Die die1, die2;
+    private boolean gameFinished;
 
     public Game() {
         die1 = new Die();
         die2 = new Die();
         chosenValues = new HashMap<>();
+        gameFinished = false;
         initializeGame();
     }
 
@@ -30,13 +32,15 @@ public class Game {
     }
 
     /**
-     * Rolls both the dice and
+     * Gets Dice rolls values.
+     * @returns the random values of dice rolls.
      */
-    public void rollDice() {
+    public int[] rollDice() {
         int die1Value = die1.roll(), die2Value = die2.roll();
+        int[] diceValues = {die1Value,die2Value};
         int sumOfDice = die1Value+die2Value;
         System.out.println("The rolled dice values are : (" + die1Value + ", " + die2Value + ") => "+ sumOfDice);
-        updateScoreBoard(die1Value + die2Value);
+        return diceValues;
     }
 
     /**
@@ -46,7 +50,7 @@ public class Game {
      *
      * @param sumOfRolledDice key to update the scoreboard.
      */
-    private void updateScoreBoard(int sumOfRolledDice) {
+    public void updateScoreBoard(int sumOfRolledDice) {
         if (!checkForFullScore()) {
             try {
                 chosenValues.put(sumOfRolledDice, chosenValues.get(sumOfRolledDice) + 1);
@@ -69,7 +73,7 @@ public class Game {
      *
      * @return the sum of values in the chosenvalues map.
      */
-    private int findTotalRolls() {
+    public int findTotalRolls() {
         final int[] rollsSum = {0};
         chosenValues.forEach((k, v) -> rollsSum[0] += v);
         return rollsSum[0];
@@ -77,7 +81,7 @@ public class Game {
 
     /**
      * Checks if the scoreboard is already full atleast once. Iterates through the values and even if one
-     * value is '0' then the method returns false.
+     * value is '0' then the method returns false. This also indicates if the game is finished.
      *
      * @return True if full, False otherwise.
      */
@@ -87,11 +91,18 @@ public class Game {
                 return false;
             }
         }
+        gameFinished = true;
         return true;
     }
 
+    /**
+     * Displays the scoreboard.
+     */
     public void displayScoreBoard(){
-        System.out.println("Current Scoreboard is as follows: "+ chosenValues +"\n \n");
+        if (gameFinished)
+            System.out.println("Finished Scoreboard is as follows: "+ chosenValues +"\n \n");
+        else
+            System.out.println("Current Scoreboard is as follows: "+ chosenValues +"\n \n");
     }
 
 }
