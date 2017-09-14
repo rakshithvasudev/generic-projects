@@ -34,8 +34,8 @@ public class Main {
                     if (lock == 0) {
                         game.updateScoreBoard(diceRollsValues[0] + diceRollsValues[1]);
                     } else if (lock == 1) {
-                        System.out.println("Which die face value you want?"+(diceRollsValues[0])+
-                                        "-1 or" + (diceRollsValues[1])+"-2? \n");
+                        System.out.println("Which die face value you want?'"+(diceRollsValues[0])+
+                                        "' -1 or '" + (diceRollsValues[1])+"' -2? \n");
                         diceSelection = reader.nextInt();
                         // make sure the user entered the right value for the input.
                         if(diceSelection == 1 || diceSelection == 2)
