@@ -1,7 +1,8 @@
 import java.util.Scanner;
 
 /**
- * Main class where the game is run. This contains the text GUI where the game is
+ * Created by Rakshith on 9/7/2017 for CSC527 - Software Construction
+ * Assignment. This is the Main class where the game is run. This contains the text GUI where the game is
  * setup to run at the end user level.
  */
 public class Main {
@@ -34,21 +35,25 @@ public class Main {
                     if (lock == 0) {
                         game.updateScoreBoard(diceRollsValues[0] + diceRollsValues[1]);
                     } else if (lock == 1) {
-                        System.out.println("Which die face value you want?'"+(diceRollsValues[0])+
-                                        "' -1 or '" + (diceRollsValues[1])+"' -2? \n");
+                        System.out.println("Which die face value you want?'" + (diceRollsValues[0]) +
+                                "' -1 or '" + (diceRollsValues[1]) + "' -2? \n");
                         diceSelection = reader.nextInt();
                         // make sure the user entered the right value for the input.
-                        if(diceSelection == 1 || diceSelection == 2)
+                        if (diceSelection == 1 || diceSelection == 2)
                             // update the map with the request value from the dice.
                             game.updateScoreBoard(diceRollsValues[diceSelection - 1]);
-                        else{
+                        else {
                             System.out.println("You have to enter either 1 or 2. No other values. \n");
                             return;
                         }
                     }
                 }
+
+                // Display scoreboard method display's the value of the scores.
             } else if (option == 2) game.displayScoreBoard();
-             else if (option == 3) System.exit(0);
+
+                // exits the game. Returns the control to OS.
+            else if (option == 3) System.exit(0);
         }
     }
 }
