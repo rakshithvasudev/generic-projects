@@ -56,7 +56,7 @@ public class Game {
             try {
                 chosenValues.put(sumOfRolledDice, chosenValues.get(sumOfRolledDice) + 1);
             } catch (NullPointerException e) {
-                System.out.println("Error occurred please replay the game.\n");
+                System.out.println("The previous score was not recorded for some issue. Continue playing.\n");
             }
         } else {
             System.out.println("Congrats, you've finished the game with :" + findTotalRolls() + " rolls.\n \n");

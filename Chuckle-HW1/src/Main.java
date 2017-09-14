@@ -46,10 +46,9 @@ public class Main {
                             return;
                         }
                     }
-
                 }
             } else if (option == 2) game.displayScoreBoard();
-            else if (option == 3) System.exit(0);
+             else if (option == 3) System.exit(0);
         }
     }
 }
