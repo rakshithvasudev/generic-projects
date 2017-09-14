@@ -10,7 +10,7 @@ import java.util.Map;
 public class Game {
     //chosenValue tracks the values as follows:
     //{score:number of dice rolls},
-    // example :{2:0,3:1,4:2......12:4}, Here 2: is rolled 0 times, while 12 was rolled 4 times.}
+    // example :{2=0,3=1,4=2......12=4}, Here 2: is rolled 0 times, while 12 was rolled 4 times.}
     private Map<Integer, Integer> chosenValues;
     private Die die1, die2;
     private boolean gameFinished;
