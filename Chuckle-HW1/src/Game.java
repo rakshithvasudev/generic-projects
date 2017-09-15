@@ -40,10 +40,7 @@ public class Game {
      */
     public int[] rollDice() {
         int die1Value = die1.roll(), die2Value = die2.roll();
-        int[] diceValues = {die1Value, die2Value};
-        int sumOfDice = die1Value + die2Value;
-        System.out.println("The rolled dice values are : (" + die1Value + ", " + die2Value + ") => " + sumOfDice);
-        return diceValues;
+        return new int[]{die1Value, die2Value};
     }
 
     /**
@@ -57,6 +54,7 @@ public class Game {
         if (!checkForFullScore()) {
             try {
                 chosenValues.put(sumOfRolledDice, chosenValues.get(sumOfRolledDice) + 1);
+                System.out.println("Added "+sumOfRolledDice+ " to scoreboard.");
             } catch (NullPointerException e) {
                 System.out.println("The previous score was not recorded for some issue. Continue playing.\n");
             }
@@ -106,13 +104,5 @@ public class Game {
             System.out.println("Finished Scoreboard is as follows: " + chosenValues + "\n \n");
         else
             System.out.println("Current Scoreboard is as follows: " + chosenValues + "\n \n");
-    }
-
-    /**
-     * Resets the entire game
-     */
-    public void reset() {
-        initializeGame();
-        gameFinished = false;
     }
 }

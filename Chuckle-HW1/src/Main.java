@@ -20,11 +20,12 @@ public class Main {
         while (true) {
             System.out.println("1. Roll Dice\n2. View scoreboard\n3. Exit Game: \n");
             int option = reader.nextInt();
-            int lock, diceSelection;
+            int lock, diceSelection, lockedDiceFaceValue,otherValue;
             if (option == 1) {
                 // get the random values from both the die.
                 int[] diceRollsValues = game.rollDice();
-
+                int sumOfRolledValues = diceRollsValues[0]+diceRollsValues[1];
+                System.out.println("The rolled dice values are : (" + diceRollsValues[0] + ", " + diceRollsValues[1] + ") => " + sumOfRolledValues);
                 // If the game is just starting then don't ask for locking the die values.
                 if (game.findTotalRolls() == 0) {
                     game.updateScoreBoard(diceRollsValues[0] + diceRollsValues[1]);
@@ -35,14 +36,18 @@ public class Main {
                     if (lock == 0) {
                         game.updateScoreBoard(diceRollsValues[0] + diceRollsValues[1]);
                     } else if (lock == 1) {
-                        System.out.println("Which die face value you want?'" + (diceRollsValues[0]) +
+                        System.out.println("Which die face value you want to lock?'" + (diceRollsValues[0]) +
                                 "' -1 or '" + (diceRollsValues[1]) + "' -2? \n");
                         diceSelection = reader.nextInt();
                         // make sure the user entered the right value for the input.
-                        if (diceSelection == 1 || diceSelection == 2)
+                        if (diceSelection == 1 || diceSelection == 2) {
                             // update the map with the request value from the dice.
-                            game.updateScoreBoard(diceRollsValues[diceSelection - 1]);
-                        else {
+                            lockedDiceFaceValue = diceRollsValues[diceSelection - 1];
+                            otherValue = game.rollDice()[0];
+                            game.updateScoreBoard(lockedDiceFaceValue + otherValue);
+                            System.out.println("Added locked value: "+lockedDiceFaceValue +" and other value: "+otherValue+" to scoreboard, " +
+                                    "whose sum is:"+(lockedDiceFaceValue + otherValue));
+                        }else {
                             System.out.println("You have to enter either 1 or 2. No other values. \n");
                             return;
                         }
@@ -54,8 +59,6 @@ public class Main {
 
                 // exits the game. Returns the control to OS.
             else if (option == 3) System.exit(0);
-
-            else if(option == 4) game.reset();
         }
     }
 }
