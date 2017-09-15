@@ -54,6 +54,8 @@ public class Main {
 
                 // exits the game. Returns the control to OS.
             else if (option == 3) System.exit(0);
+
+            else if(option == 4) game.reset();
         }
     }
 }

@@ -108,4 +108,11 @@ public class Game {
             System.out.println("Current Scoreboard is as follows: " + chosenValues + "\n \n");
     }
 
+    /**
+     * Resets the entire game
+     */
+    public void reset() {
+        initializeGame();
+        gameFinished = false;
+    }
 }
