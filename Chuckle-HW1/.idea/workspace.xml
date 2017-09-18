@@ -40,8 +40,8 @@
       <file leaf-file-name="Die.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Die.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="4" column="15" lean-forward="false" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
+            <state relative-caret-position="18">
+              <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="9" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -573,12 +573,12 @@
       <workItem from="1505425071236" duration="26000" />
       <workItem from="1505425143090" duration="128000" />
       <workItem from="1505425339251" duration="6550000" />
-      <workItem from="1505698968088" duration="3706000" />
+      <workItem from="1505698968088" duration="3847000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33063000" />
+    <option name="totallyTimeSpent" value="33204000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -808,8 +808,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Die.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="15" lean-forward="false" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
+        <state relative-caret-position="18">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="9" selection-end-column="3" />
           <folding />
         </state>
       </provider>

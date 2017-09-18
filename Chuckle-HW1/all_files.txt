@@ -1,0 +1,819 @@
+====================================Die.java============================
+
+import java.util.concurrent.ThreadLocalRandom;
+
+
+/**
+ * Created by Rakshith on 9/7/2017 for CSC527 - Software Construction
+ * Assignment. This class represents a single Die
+ * In the game with features such as roll and generate random numbers like a real
+ * die whose values can end up anywhere between 1 to 6. Plumbing code methods such as hashcode
+ * and equals are already implemented to ensure the smooth operations of hashing and
+ * reference semantics in this class.
+ */
+public class Die {
+    private int faceValue;
+
+    /**
+     * This function simulates the roll event that can return any random
+     * value between 1 and 6, much like an actual dice.
+     *
+     * @return a random value between 1 and 6 using ThreadLocalRandom.
+     */
+    public int roll() {
+        faceValue = ThreadLocalRandom.current().nextInt(1, 6 + 1);
+        return faceValue;
+    }
+
+    @Override
+    public String toString() {
+        return ("[" + faceValue + ":]");
+    }
+
+    /**
+     * Helps to support unique value identification.
+     * This function overrides the default hashcode from java
+     * to prevent in a violation of the general contract for
+     * Object.hashCode(), which will prevent the class from functioning properly
+     * in conjunction with all hash-based collections, including HashMap, HashSet, and Hashtable.
+     *
+     * @return the hashed value of the Die.
+     */
+    @Override
+    public int hashCode() {
+        int a = 883;
+        a = faceValue * a * 1033;
+        a += faceValue * a;
+        return a;
+    }
+
+    /**
+     * @param obj Object for checking for equality in input.
+     * @return True only if the object is equal in value and not via reference.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (obj != null && this.getClass() == obj.getClass()) {
+            Die objEqual = (Die) obj;
+            return objEqual.faceValue == this.faceValue;
+        }
+        return false;
+    }
+}
+
+
+====================================Game.java============================
+
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Created by Rakshith on 9/7/2017 for CSC527 - Software Construction
+ * Assignment. This class contains the entire chuckle game
+ * elements including the dice rolls, chosen values aka the "scoreboard", that
+ * tracks the number of times a roll event occurred.
+ */
+public class Game {
+    //chosenValue tracks the values as follows:
+    //{score:number of dice rolls},
+    // example :{2=0,3=1,4=2......12=4}, Here 2: is rolled 0 times, while 12 was rolled 4 times.}
+    private Map<Integer, Integer> chosenValues;
+    private Die die1, die2;
+    private boolean gameFinished;
+
+    public Game() {
+        die1 = new Die();
+        die2 = new Die();
+        chosenValues = new HashMap<>();
+        gameFinished = false;
+        initializeGame();
+    }
+
+    /**
+     * Starts the game by initializing the scoreboard - chosenvalues.
+     * All the keys of the map are the face values of the dice, while the values of the
+     * map are the number of times it was rolled. To begin the game, the keys are initialized to 0's.
+     */
+    private void initializeGame() {
+        for (int i = 2; i <= 12; i++)
+            chosenValues.put(i, 0);
+    }
+
+    /**
+     * Gets Dice rolls values.
+     *
+     * @returns the random values of dice rolls.
+     */
+    public int[] rollDice() {
+        int die1Value = die1.roll(), die2Value = die2.roll();
+        return new int[]{die1Value, die2Value};
+    }
+
+    /**
+     * Updates the scoreboard map. Adds 1 to the value of the map of the key "sumOfRolledDice".
+     * Before updating the value to the scoreboard, the function checks if already the scoreboard is full
+     * atleast once. If it's full, the game stops otherwise it adds to the scoreboard.
+     *
+     * @param sumOfRolledDice key to update the scoreboard.
+     */
+    public void updateScoreBoard(int sumOfRolledDice) {
+        if (!checkForFullScore()) {
+            try {
+                chosenValues.put(sumOfRolledDice, chosenValues.get(sumOfRolledDice) + 1);
+                System.out.println("Added "+sumOfRolledDice+ " to scoreboard.");
+            } catch (NullPointerException e) {
+                System.out.println("The previous score was not recorded for some issue. Continue playing.\n");
+            }
+        } else {
+            System.out.println("Congrats, you've finished the game with :" + findTotalRolls() + " rolls.\n \n");
+            System.out.println("Here is your final scoreboard :\n ");
+            displayScoreBoard();
+            System.exit(0);
+        }
+    }
+
+    /**
+     * Finds the total number of rolls in the values of the map.
+     * Experimenting with java 8 lambdas seem to be more efficient
+     * than regular for-each loop as discussed here :
+     * https://stackoverflow.com/a/35558955
+     *
+     * @return the sum of values in the chosenvalues map.
+     */
+    public int findTotalRolls() {
+        final int[] rollsSum = {0};
+        chosenValues.forEach((k, v) -> rollsSum[0] += v);
+        return rollsSum[0];
+    }
+
+    /**
+     * Checks if the scoreboard is already full atleast once. Iterates through the values and even if one
+     * value is '0' then the method returns false. This also indicates if the game is finished.
+     *
+     * @return True if full, False otherwise.
+     */
+    private boolean checkForFullScore() {
+        for (Object o : chosenValues.values()) {
+            if (((int) o == 0)) {
+                return false;
+            }
+        }
+        gameFinished = true;
+        return true;
+    }
+
+    /**
+     * Displays the scoreboard.
+     */
+    public void displayScoreBoard() {
+        if (gameFinished)
+            System.out.println("Finished Scoreboard is as follows: " + chosenValues + "\n \n");
+        else
+            System.out.println("Current Scoreboard is as follows: " + chosenValues + "\n \n");
+    }
+}
+
+===============================Main.java===========================================
+
+import java.util.Scanner;
+
+/**
+ * Created by Rakshith on 9/7/2017 for CSC527 - Software Construction
+ * Assignment. This is the Main class where the game is run. This contains the text GUI where the game is
+ * setup to run at the end user level.
+ */
+public class Main {
+
+    public static void main(String[] args) {
+        // Start a new game instance.
+        Game game = new Game();
+
+        //used to seek for user inputs.
+        Scanner reader = new Scanner(System.in);
+        System.out.println("Welcome to playing Chuckles. Here are your options:");
+
+
+        // Keeps looping forever either until the user quits the game or user finishes the game.
+        while (true) {
+            System.out.println("1. Roll Dice\n2. View scoreboard\n3. Exit Game: \n");
+            int option = reader.nextInt();
+            int lock, diceSelection, lockedDiceFaceValue,otherValue;
+            if (option == 1) {
+                // get the random values from both the die.
+                int[] diceRollsValues = game.rollDice();
+                int sumOfRolledValues = diceRollsValues[0]+diceRollsValues[1];
+                System.out.println("The rolled dice values are : (" + diceRollsValues[0] + ", " + diceRollsValues[1] + ") => " + sumOfRolledValues);
+                // If the game is just starting then don't ask for locking the die values.
+                if (game.findTotalRolls() == 0) {
+                    game.updateScoreBoard(diceRollsValues[0] + diceRollsValues[1]);
+                } else {
+                    System.out.println("Do you want to lock the dice? Yes-1, No-0: \n");
+                    lock = reader.nextInt();
+                    // if the user doesn't request for the lock then update the map with both the values of the dice.
+                    if (lock == 0) {
+                        game.updateScoreBoard(diceRollsValues[0] + diceRollsValues[1]);
+                    } else if (lock == 1) {
+                        System.out.println("Which die face value you want to lock?'" + (diceRollsValues[0]) +
+                                "' -1 or '" + (diceRollsValues[1]) + "' -2? \n");
+                        diceSelection = reader.nextInt();
+                        // make sure the user entered the right value for the input.
+                        if (diceSelection == 1 || diceSelection == 2) {
+                            // update the map with the request value from the dice.
+                            lockedDiceFaceValue = diceRollsValues[diceSelection - 1];
+                            otherValue = game.rollDice()[0];
+                            game.updateScoreBoard(lockedDiceFaceValue + otherValue);
+                            System.out.println("Added locked value: "+lockedDiceFaceValue +" and other value: "+otherValue+" to scoreboard, " +
+                                    "whose sum is:"+(lockedDiceFaceValue + otherValue));
+                        }else {
+                            System.out.println("You have to enter either 1 or 2. No other values. \n");
+                            return;
+                        }
+                    }
+                }
+
+                // This method display's the value of the scores.
+            } else if (option == 2) game.displayScoreBoard();
+
+                // exits the game. Returns the control to OS.
+            else if (option == 3) System.exit(0);
+        }
+    }
+}
+
+==================================Gameplay=================================
+
+/usr/lib/jvm/java-1.8.0-openjdk-amd64/bin/java -javaagent:/home/rakshith/IJ/idea-IU-172.3968.16/lib/idea_rt.jar=41505:/home/rakshith/IJ/idea-IU-172.3968.16/bin -Dfile.encoding=UTF-8 -classpath "/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/charsets.jar:/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/ext/cldrdata.jar:/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/ext/dnsns.jar:/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/ext/icedtea-sound.jar:/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/ext/jaccess.jar:/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/ext/java-atk-wrapper.jar:/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/ext/localedata.jar:/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/ext/nashorn.jar:/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/ext/sunec.jar:/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/ext/sunjce_provider.jar:/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/ext/sunpkcs11.jar:/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/ext/zipfs.jar:/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/jce.jar:/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/jsse.jar:/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/management-agent.jar:/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/resources.jar:/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/rt.jar:/home/rakshith/Documents/soft cons ass/CSC527-HWS/Chuckle-HW1/out/production/Chuckle" Main
+
+
+
+
+Welcome to playing Chuckles. Here are your options:
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+
+1
+The rolled dice values are : (1, 3) => 4
+Added 4 to scoreboard.
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (6, 4) => 10
+Do you want to lock the dice? Yes-1, No-0: 
+
+1
+Which die face value you want to lock?'6' -1 or '4' -2? 
+
+1
+Added 11 to scoreboard.
+Added locked value: 6 and other value: 5 to scoreboard, whose sum is:11
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (5, 6) => 11
+Do you want to lock the dice? Yes-1, No-0: 
+
+1
+Which die face value you want to lock?'5' -1 or '6' -2? 
+
+1
+Added 7 to scoreboard.
+Added locked value: 5 and other value: 2 to scoreboard, whose sum is:7
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (1, 2) => 3
+Do you want to lock the dice? Yes-1, No-0: 
+
+0
+Added 3 to scoreboard.
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (5, 1) => 6
+Do you want to lock the dice? Yes-1, No-0: 
+
+0
+Added 6 to scoreboard.
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+2
+Current Scoreboard is as follows: {2=0, 3=1, 4=1, 5=0, 6=1, 7=1, 8=0, 9=0, 10=0, 11=1, 12=0}
+ 
+
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (5, 3) => 8
+Do you want to lock the dice? Yes-1, No-0: 
+
+0
+Added 8 to scoreboard.
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (2, 6) => 8
+Do you want to lock the dice? Yes-1, No-0: 
+
+1
+Which die face value you want to lock?'2' -1 or '6' -2? 
+
+1
+Added 7 to scoreboard.
+Added locked value: 2 and other value: 5 to scoreboard, whose sum is:7
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+2
+Current Scoreboard is as follows: {2=0, 3=1, 4=1, 5=0, 6=1, 7=2, 8=1, 9=0, 10=0, 11=1, 12=0}
+ 
+
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (3, 6) => 9
+Do you want to lock the dice? Yes-1, No-0: 
+
+0
+Added 9 to scoreboard.
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (4, 3) => 7
+Do you want to lock the dice? Yes-1, No-0: 
+
+1
+Which die face value you want to lock?'4' -1 or '3' -2? 
+
+2
+Added 9 to scoreboard.
+Added locked value: 3 and other value: 6 to scoreboard, whose sum is:9
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+2
+Current Scoreboard is as follows: {2=0, 3=1, 4=1, 5=0, 6=1, 7=2, 8=1, 9=2, 10=0, 11=1, 12=0}
+ 
+
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (3, 3) => 6
+Do you want to lock the dice? Yes-1, No-0: 
+
+1
+Which die face value you want to lock?'3' -1 or '3' -2? 
+
+2
+Added 6 to scoreboard.
+Added locked value: 3 and other value: 3 to scoreboard, whose sum is:6
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (4, 5) => 9
+Do you want to lock the dice? Yes-1, No-0: 
+
+1
+Which die face value you want to lock?'4' -1 or '5' -2? 
+
+2
+Added 8 to scoreboard.
+Added locked value: 5 and other value: 3 to scoreboard, whose sum is:8
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (6, 5) => 11
+Do you want to lock the dice? Yes-1, No-0: 
+
+1
+Which die face value you want to lock?'6' -1 or '5' -2? 
+
+1
+Added 9 to scoreboard.
+Added locked value: 6 and other value: 3 to scoreboard, whose sum is:9
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (5, 6) => 11
+Do you want to lock the dice? Yes-1, No-0: 
+
+0
+Added 11 to scoreboard.
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (4, 1) => 5
+Do you want to lock the dice? Yes-1, No-0: 
+
+0
+Added 5 to scoreboard.
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+2
+Current Scoreboard is as follows: {2=0, 3=1, 4=1, 5=1, 6=2, 7=2, 8=2, 9=3, 10=0, 11=2, 12=0}
+ 
+
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (4, 4) => 8
+Do you want to lock the dice? Yes-1, No-0: 
+
+1
+Which die face value you want to lock?'4' -1 or '4' -2? 
+
+1
+Added 5 to scoreboard.
+Added locked value: 4 and other value: 1 to scoreboard, whose sum is:5
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (5, 2) => 7
+Do you want to lock the dice? Yes-1, No-0: 
+
+0
+Added 7 to scoreboard.
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (5, 5) => 10
+Do you want to lock the dice? Yes-1, No-0: 
+
+0
+Added 10 to scoreboard.
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (3, 2) => 5
+Do you want to lock the dice? Yes-1, No-0: 
+
+0
+Added 5 to scoreboard.
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (2, 5) => 7
+Do you want to lock the dice? Yes-1, No-0: 
+
+0
+Added 7 to scoreboard.
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (3, 2) => 5
+Do you want to lock the dice? Yes-1, No-0: 
+
+1
+Which die face value you want to lock?'3' -1 or '2' -2? 
+
+1
+Added 9 to scoreboard.
+Added locked value: 3 and other value: 6 to scoreboard, whose sum is:9
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (2, 1) => 3
+Do you want to lock the dice? Yes-1, No-0: 
+
+1
+Which die face value you want to lock?'2' -1 or '1' -2? 
+
+1
+Added 3 to scoreboard.
+Added locked value: 2 and other value: 1 to scoreboard, whose sum is:3
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (4, 5) => 9
+Do you want to lock the dice? Yes-1, No-0: 
+
+0
+Added 9 to scoreboard.
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (3, 2) => 5
+Do you want to lock the dice? Yes-1, No-0: 
+
+0
+Added 5 to scoreboard.
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (4, 6) => 10
+Do you want to lock the dice? Yes-1, No-0: 
+
+1
+Which die face value you want to lock?'4' -1 or '6' -2? 
+
+2
+Added 8 to scoreboard.
+Added locked value: 6 and other value: 2 to scoreboard, whose sum is:8
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (1, 2) => 3
+Do you want to lock the dice? Yes-1, No-0: 
+
+0
+Added 3 to scoreboard.
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+2
+Current Scoreboard is as follows: {2=0, 3=3, 4=1, 5=4, 6=2, 7=4, 8=3, 9=5, 10=1, 11=2, 12=0}
+ 
+
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (6, 1) => 7
+Do you want to lock the dice? Yes-1, No-0: 
+
+0
+Added 7 to scoreboard.
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (1, 5) => 6
+Do you want to lock the dice? Yes-1, No-0: 
+
+0
+Added 6 to scoreboard.
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (5, 2) => 7
+Do you want to lock the dice? Yes-1, No-0: 
+
+0
+Added 7 to scoreboard.
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (3, 1) => 4
+Do you want to lock the dice? Yes-1, No-0: 
+
+1
+Which die face value you want to lock?'3' -1 or '1' -2? 
+
+2
+Added 7 to scoreboard.
+Added locked value: 1 and other value: 6 to scoreboard, whose sum is:7
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (5, 6) => 11
+Do you want to lock the dice? Yes-1, No-0: 
+
+0
+Added 11 to scoreboard.
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (1, 1) => 2
+Do you want to lock the dice? Yes-1, No-0: 
+
+0
+Added 2 to scoreboard.
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (1, 1) => 2
+Do you want to lock the dice? Yes-1, No-0: 
+
+0
+Added 2 to scoreboard.
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (4, 5) => 9
+Do you want to lock the dice? Yes-1, No-0: 
+
+1
+Which die face value you want to lock?'4' -1 or '5' -2? 
+
+2
+Added 9 to scoreboard.
+Added locked value: 5 and other value: 4 to scoreboard, whose sum is:9
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (2, 5) => 7
+Do you want to lock the dice? Yes-1, No-0: 
+
+0
+Added 7 to scoreboard.
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (4, 5) => 9
+Do you want to lock the dice? Yes-1, No-0: 
+
+0
+Added 9 to scoreboard.
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (5, 2) => 7
+Do you want to lock the dice? Yes-1, No-0: 
+
+0
+Added 7 to scoreboard.
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (6, 3) => 9
+Do you want to lock the dice? Yes-1, No-0: 
+
+0
+Added 9 to scoreboard.
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (6, 1) => 7
+Do you want to lock the dice? Yes-1, No-0: 
+
+0
+Added 7 to scoreboard.
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (6, 1) => 7
+Do you want to lock the dice? Yes-1, No-0: 
+
+0
+Added 7 to scoreboard.
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (5, 4) => 9
+Do you want to lock the dice? Yes-1, No-0: 
+
+0
+Added 9 to scoreboard.
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (4, 1) => 5
+Do you want to lock the dice? Yes-1, No-0: 
+
+0
+Added 5 to scoreboard.
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (5, 4) => 9
+Do you want to lock the dice? Yes-1, No-0: 
+
+0
+Added 9 to scoreboard.
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (2, 1) => 3
+Do you want to lock the dice? Yes-1, No-0: 
+
+0
+Added 3 to scoreboard.
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (5, 6) => 11
+Do you want to lock the dice? Yes-1, No-0: 
+
+0
+Added 11 to scoreboard.
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (1, 4) => 5
+Do you want to lock the dice? Yes-1, No-0: 
+
+0
+Added 5 to scoreboard.
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (6, 6) => 12
+Do you want to lock the dice? Yes-1, No-0: 
+
+0
+Added 12 to scoreboard.
+1. Roll Dice
+2. View scoreboard
+3. Exit Game: 
+
+1
+The rolled dice values are : (5, 4) => 9
+Do you want to lock the dice? Yes-1, No-0: 
+
+0
+Congrats, you've finished the game with :46 rolls.
+ 
+
+Here is your final scoreboard :
+ 
+Finished Scoreboard is as follows: {2=2, 3=4, 4=1, 5=6, 6=3, 7=11, 8=3, 9=10, 10=1, 11=4, 12=1}
+ 
+
+
+Process finished with exit code 0
