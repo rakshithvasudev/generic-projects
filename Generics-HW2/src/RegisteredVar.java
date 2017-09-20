@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * This class demonstrates Generics in Java with updates.
- * @param <T> Anydata type that user potentially wants to consider
+ * @param <T> Any datatype that user potentially wants to consider
  *           passing.
  */
 public class RegisteredVar<T> {
@@ -39,7 +39,6 @@ public class RegisteredVar<T> {
             timesChanged=0;
         else
             timesChanged+=1;
-            setupTimestamp();
     }
 
     /**
@@ -66,6 +65,18 @@ public class RegisteredVar<T> {
 
     public T getValue(){
         return genericData;
+    }
+
+
+
+    public void getlastThreeTimeStamps(){
+        int size = latestTimeStamp.size();
+        try {
+            for (int i = size - 1; i > size - 4; i--)
+                System.out.println(latestTimeStamp.get(i));
+        }catch (Exception e){
+            System.out.println("3 values haven't been changed yet!");
+        }
     }
 
 }
