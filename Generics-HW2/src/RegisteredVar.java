@@ -7,22 +7,18 @@ import java.util.List;
  * @param <T> Any datatype that user potentially wants to consider
  *           passing.
  */
-public class RegisteredVar<T> {
+public class RegisteredVar<T extends Comparable<T>> {
 
     private T genericData;
     private int timesChanged;
     private List<Timestamp> latestTimeStamp;
     private List<T> lastValues;
-//    private T maxValue;
-//    private T minValue;
 
     public RegisteredVar(){
         genericData = null;
         timesChanged=0;
         latestTimeStamp = new ArrayList<>();
         lastValues = new ArrayList<>();
-//        maxValue=Double.MIN_VALUE;
-//        minValue=Double.MAX_VALUE;
     }
 
 
@@ -31,8 +27,6 @@ public class RegisteredVar<T> {
         genericData = newValue;
         setupTimestamp();
         setupValues(newValue);
-//        updateMax();
-//        updateMin();
     }
 
     private void setupValues(T newValue) {
@@ -58,16 +52,24 @@ public class RegisteredVar<T> {
     /**
      *
      */
-    private void updateMax(){
-//        if((double)genericData>maxValue){
-//            maxValue =(double)genericData;
-//        }
+    public T getMax(){
+        T max=lastValues.get(0) ;
+        for (T e:lastValues) {
+          if(e.compareTo(max) > 0){
+               max = e;
+               }
+            }
+        return max;
     }
 
-    private void updateMin(){
-//        if((double)genericData<minValue){
-//            minValue =(double)genericData;
-//        }
+    public T getMin(){
+       T min = lastValues.get(0);
+        for (T e:lastValues) {
+            if(e.compareTo(min) < 0){
+                min = e;
+            }
+        }
+        return min;
     }
 
     public T getValue(){

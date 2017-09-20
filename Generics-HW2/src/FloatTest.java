@@ -28,12 +28,12 @@ public class FloatTest {
 
         registeredVar.setValue((float)342.2335);
 
-        System.out.println("\n Latest generic value: "+registeredVar.getValue());
+        System.out.println("\nLatest generic value: "+registeredVar.getValue());
         System.out.println("Number of times changed: "+registeredVar.getTimesChanged() +"\n");
-        System.out.println("Last 3 Modified timestamps: ");
+        System.out.println("Last 3 Modified timestamps in Reverse Order(Latest to Old) : ");
         registeredVar.getlastThreeTimeStamps();
         System.out.println("\n");
-        System.out.println("Last 3 Modified values: ");
+        System.out.println("Last 3 Modified values in Reverse Order(Latest to Old) : ");
         registeredVar.getlastThreeValuesStamps();
     }
 }

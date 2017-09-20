@@ -29,13 +29,15 @@ public class IntegerTest {
 
         registeredVar.setValue(34235);
 
-        System.out.println("Latest generic value: "+registeredVar.getValue());
+        System.out.println("\nLatest generic value: "+registeredVar.getValue());
         System.out.println("Number of times changed: "+registeredVar.getTimesChanged() +"\n");
-        System.out.println("Last 3 Modified timestamps: ");
+        System.out.println("Last 3 Modified timestamps in Reverse Order(Latest to Old) : ");
         registeredVar.getlastThreeTimeStamps();
         System.out.println("\n");
-        System.out.println("Last 3 Modified values: ");
+        System.out.println("Last 3 Modified values in Reverse Order(Latest to Old) : ");
         registeredVar.getlastThreeValuesStamps();
+        System.out.println("Least Value "+registeredVar.getMin());
+        System.out.println("Max Value "+registeredVar.getMax());
 
     }
 
