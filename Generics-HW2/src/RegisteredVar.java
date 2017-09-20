@@ -13,22 +13,25 @@ public class RegisteredVar<T> {
     private int timesChanged;
     private List<Timestamp> latestTimeStamp;
     private List<T> lastThreeValues;
-    private int maxValue;
-    private int minValue;
+    private double maxValue;
+    private double minValue;
 
     public RegisteredVar(){
         genericData = null;
         timesChanged=0;
         latestTimeStamp = new ArrayList<>();
         lastThreeValues = new ArrayList<>();
-        maxValue=Integer.MIN_VALUE;
-        minValue=Integer.MAX_VALUE;
+        maxValue=Double.MIN_VALUE;
+        minValue=Double.MAX_VALUE;
     }
 
 
     public void setValue(T newValue){
         updateCounters();
         genericData = newValue;
+        setupTimestamp();
+        updateMax();
+        updateMin();
     }
 
     private void updateCounters() {
@@ -36,7 +39,33 @@ public class RegisteredVar<T> {
             timesChanged=0;
         else
             timesChanged+=1;
+            setupTimestamp();
     }
 
+    /**
+     * Adds the time stamp.
+     */
+    private void setupTimestamp() {
+        latestTimeStamp.add(new Timestamp(System.currentTimeMillis()));
+    }
+
+    /**
+     *
+     */
+    private void updateMax(){
+        if((double)genericData>maxValue){
+            maxValue =(double)genericData;
+        }
+    }
+
+    private void updateMin(){
+        if((double)genericData<minValue){
+            minValue =(double)genericData;
+        }
+    }
+
+    public T getValue(){
+        return genericData;
+    }
 
 }
