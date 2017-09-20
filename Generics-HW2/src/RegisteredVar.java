@@ -13,16 +13,16 @@ public class RegisteredVar<T> {
     private int timesChanged;
     private List<Timestamp> latestTimeStamp;
     private List<T> lastValues;
-    private double maxValue;
-    private double minValue;
+//    private T maxValue;
+//    private T minValue;
 
     public RegisteredVar(){
         genericData = null;
         timesChanged=0;
         latestTimeStamp = new ArrayList<>();
         lastValues = new ArrayList<>();
-        maxValue=Double.MIN_VALUE;
-        minValue=Double.MAX_VALUE;
+//        maxValue=Double.MIN_VALUE;
+//        minValue=Double.MAX_VALUE;
     }
 
 
@@ -30,8 +30,15 @@ public class RegisteredVar<T> {
         updateCounters();
         genericData = newValue;
         setupTimestamp();
-        updateMax();
-        updateMin();
+        setupValues(newValue);
+//        updateMax();
+//        updateMin();
+    }
+
+    private void setupValues(T newValue) {
+    if (timesChanged>0){
+        lastValues.add(newValue);
+        }
     }
 
     private void updateCounters() {
@@ -52,15 +59,15 @@ public class RegisteredVar<T> {
      *
      */
     private void updateMax(){
-        if((double)genericData>maxValue){
-            maxValue =(double)genericData;
-        }
+//        if((double)genericData>maxValue){
+//            maxValue =(double)genericData;
+//        }
     }
 
     private void updateMin(){
-        if((double)genericData<minValue){
-            minValue =(double)genericData;
-        }
+//        if((double)genericData<minValue){
+//            minValue =(double)genericData;
+//        }
     }
 
     public T getValue(){
