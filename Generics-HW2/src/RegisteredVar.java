@@ -53,10 +53,19 @@ public class RegisteredVar<T extends Comparable<T>> {
         setupValues(newValue);
     }
 
+    /**
+     * Adds to the lastValues list.
+     * @param newValue A Generic type that allows
+     *                 new value to be added.
+     */
     private void setupValues(T newValue) {
         lastValues.add(newValue);
     }
 
+    /**
+     * Increments the number of times the generic value was changed.
+     *
+     */
     private void updateCounters() {
         if(genericData==null)
             timesChanged=0;
@@ -65,14 +74,15 @@ public class RegisteredVar<T extends Comparable<T>> {
     }
 
     /**
-     * Adds the time stamp.
+     * Adds the time stamp list.
      */
     private void setupTimestamp() {
         latestTimeStamp.add(new Timestamp(System.currentTimeMillis()));
     }
 
     /**
-     *
+     * This method compares all the values in the lastValues list and
+     * returns the Maximum value.
      */
     public T getMax(){
         T max=lastValues.get(0) ;
@@ -84,6 +94,10 @@ public class RegisteredVar<T extends Comparable<T>> {
         return max;
     }
 
+    /**
+     * This method compares all the values in the lastValues list and
+     * returns the Minimum value.
+     */
     public T getMin(){
        T min = lastValues.get(0);
         for (T e:lastValues) {
@@ -94,13 +108,19 @@ public class RegisteredVar<T extends Comparable<T>> {
         return min;
     }
 
+    /**
+     * Get the value of generic data.
+     * @return the value of generic data.
+     */
     public T getValue(){
         return genericData;
     }
 
 
-
-    public void getlastThreeTimeStamps(){
+    /**
+     * Prints the last three time stamps.
+     */
+    public void getLastThreeTimeStamps(){
         int size = latestTimeStamp.size();
         try {
             for (int i = size - 1; i > size - 4; i--)
@@ -111,9 +131,9 @@ public class RegisteredVar<T extends Comparable<T>> {
     }
 
     /**
-     *
+     * Prints the last three values.
      */
-    public void getlastThreeValuesStamps(){
+    public void getLastThreeValuesStamps(){
         int size = lastValues.size();
         try {
             for (int i = size - 1; i > size - 4; i--)
@@ -127,7 +147,7 @@ public class RegisteredVar<T extends Comparable<T>> {
     /**
      * This function retrieves the number of times the variable
      * was changed.
-     * @return timeschanged which is an integer.
+     * @return number of times changed which is an integer.
      */
     public int getTimesChanged(){
         return timesChanged;
