@@ -35,5 +35,7 @@ public class FloatTest {
         System.out.println("\n");
         System.out.println("Last 3 Modified values in Reverse Order(Latest to Old) : ");
         registeredVar.getlastThreeValuesStamps();
+        System.out.println("Least Value: "+registeredVar.getMin());
+        System.out.println("Max Value: "+registeredVar.getMax());
     }
 }
