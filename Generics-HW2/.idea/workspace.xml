@@ -15,8 +15,8 @@
       <file leaf-file-name="RegisteredVar.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/RegisteredVar.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="406">
+              <caret line="133" column="54" lean-forward="false" selection-start-line="133" selection-start-column="54" selection-end-line="133" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1724#1725#0" expanded="true" />
@@ -25,8 +25,8 @@
                 <element signature="e#2163#2164#0" expanded="true" />
                 <element signature="e#2933#2934#0" expanded="true" />
                 <element signature="e#2967#2968#0" expanded="true" />
-                <element signature="e#3927#3928#0" expanded="true" />
-                <element signature="e#3962#3963#0" expanded="true" />
+                <element signature="e#3947#3948#0" expanded="true" />
+                <element signature="e#3982#3983#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -273,12 +273,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1505886060457</updated>
-      <workItem from="1505886061798" duration="11389000" />
+      <workItem from="1505886061798" duration="11431000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11389000" />
+    <option name="totallyTimeSpent" value="11431000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
@@ -342,8 +342,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/RegisteredVar.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="406">
+          <caret line="133" column="54" lean-forward="false" selection-start-line="133" selection-start-column="54" selection-end-line="133" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1724#1725#0" expanded="true" />
@@ -352,8 +352,8 @@
             <element signature="e#2163#2164#0" expanded="true" />
             <element signature="e#2933#2934#0" expanded="true" />
             <element signature="e#2967#2968#0" expanded="true" />
-            <element signature="e#3927#3928#0" expanded="true" />
-            <element signature="e#3962#3963#0" expanded="true" />
+            <element signature="e#3947#3948#0" expanded="true" />
+            <element signature="e#3982#3983#0" expanded="true" />
           </folding>
         </state>
       </provider>

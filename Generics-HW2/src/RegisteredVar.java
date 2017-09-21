@@ -131,7 +131,7 @@ public class RegisteredVar<T extends Comparable<T>> {
     }
 
     /**
-     * Prints the last three values.
+     * Prints the last three values of the generic data.
      */
     public void getLastThreeValuesStamps(){
         int size = lastValues.size();
