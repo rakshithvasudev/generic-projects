@@ -1,3 +1,9 @@
+/**
+ * Created by Rakshith on 21st - sept- 2017, this class is used
+ * to test RegisteredVar Generic class with Integer.
+ * Threads are introduced intermittently just to make sure
+ * timestamps work.
+ */
 public class IntegerTest {
 
     public static void main(String[] args) {
@@ -38,7 +44,5 @@ public class IntegerTest {
         registeredVar.getLastThreeValuesStamps();
         System.out.println("Least Value: "+registeredVar.getMin());
         System.out.println("Max Value: "+registeredVar.getMax());
-
     }
-
 }

@@ -13,13 +13,13 @@ public class Game {
     // example :{2=0,3=1,4=2......12=4}, Here 2: is rolled 0 times, while 12 was rolled 4 times.}
     private Map<Integer, Integer> chosenValues;
     private Die die1, die2;
-    private boolean gameFinished;
+    private boolean isGameFinished;
 
     public Game() {
         die1 = new Die();
         die2 = new Die();
         chosenValues = new HashMap<>();
-        gameFinished = false;
+        isGameFinished = false;
         initializeGame();
     }
 
@@ -29,8 +29,9 @@ public class Game {
      * map are the number of times it was rolled. To begin the game, the keys are initialized to 0's.
      */
     private void initializeGame() {
-        for (int i = 2; i <= 12; i++)
+        for (int i = 2; i <= 12; i++){
             chosenValues.put(i, 0);
+        }
     }
 
     /**
@@ -92,7 +93,7 @@ public class Game {
                 return false;
             }
         }
-        gameFinished = true;
+        isGameFinished = true;
         return true;
     }
 
@@ -100,7 +101,7 @@ public class Game {
      * Displays the scoreboard.
      */
     public void displayScoreBoard() {
-        if (gameFinished)
+        if (isGameFinished)
             System.out.println("Finished Scoreboard is as follows: " + chosenValues + "\n \n");
         else
             System.out.println("Current Scoreboard is as follows: " + chosenValues + "\n \n");

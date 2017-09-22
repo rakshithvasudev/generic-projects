@@ -1,3 +1,9 @@
+/**
+ * Created by Rakshith on 21st - sept- 2017, this class is used
+ * to test RegisteredVar Generic class with Float.
+ * Threads are introduced intermittently just to make sure
+ * timestamps work.
+ */
 public class FloatTest {
     public static void main(String[] args) {
         RegisteredVar<Float> registeredVar = new RegisteredVar<>();

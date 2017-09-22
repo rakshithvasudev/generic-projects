@@ -4,7 +4,9 @@ import java.util.List;
 
 /**
  * Created by Rakshith on 20-sept-2017 for CSC527-HW2. This class demonstrates
- * Generics in Java with updates. The classes that are to be passed must implement
+ * Generics in Java with updates.
+ *
+ * @pre The classes that are to be passed must implement
  * comparable.
  *
  * @param <T> Any datatype that user potentially wants to consider
@@ -40,18 +42,27 @@ public class RegisteredVar<T extends Comparable<T>> {
      * @param newValue type T param to set the value to the generic data.
      */
     public void setValue(T newValue){
-        // updates the number of times changed field.
-        updateCounters();
 
-        // set the new Value to generic data.
-        genericData = newValue;
+        // if the newValue is not equal to already generic data
+        // value then update the values. Otherwise do nothing.
+        if(newValue != genericData){
 
-        // update the timestamps,
-        // add to the list.
-        setupTimestamp();
+            // updates the number of times changed field.
+            updateCounters();
 
-        //add to the latest values.
-        setupValues(newValue);
+            // set the new Value to generic data.
+            genericData = newValue;
+
+            // update the timestamps,
+            // add to the list.
+            setupTimestamp();
+
+            //add to the latest values.
+            setupValues(newValue);
+        }
+
+
+
     }
 
     /**

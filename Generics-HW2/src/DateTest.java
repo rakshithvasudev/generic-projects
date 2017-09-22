@@ -1,9 +1,12 @@
 import java.util.Date;
 
 /**
- * Created by Rakshith on 9/21/2017.
+ * Created by Rakshith on 21st - sept- 2017, this class is used
+ * to test RegisteredVar Generic class with Date objects.
+ * Threads are introduced intermittently just to make sure
+ * timestamps work.
  */
-public class DataTest {
+public class DateTest {
     public static void main(String[] args) {
         RegisteredVar<Date> registeredVar = new RegisteredVar<>();
         registeredVar.setValue(new Date(System.currentTimeMillis()));
