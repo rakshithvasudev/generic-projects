@@ -4,7 +4,8 @@ import java.util.List;
 
 /**
  * Created by Rakshith on 20-sept-2017 for CSC527-HW2. This class demonstrates
- * Generics in Java with updates.
+ * Generics in Java with updates. The classes that are to be passed must implement
+ * comparable.
  *
  * @param <T> Any datatype that user potentially wants to consider
  *           passing usually numerical.

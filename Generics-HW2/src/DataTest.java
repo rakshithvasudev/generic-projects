@@ -1,8 +1,12 @@
-public class IntegerTest {
+import java.util.Date;
 
+/**
+ * Created by Rakshith on 9/21/2017.
+ */
+public class DataTest {
     public static void main(String[] args) {
-        RegisteredVar<Integer> registeredVar = new RegisteredVar<Integer>();
-        registeredVar.setValue(34);
+        RegisteredVar<Date> registeredVar = new RegisteredVar<>();
+        registeredVar.setValue(new Date(System.currentTimeMillis()));
 
         try {
             Thread.sleep(4000);
@@ -10,8 +14,8 @@ public class IntegerTest {
             e.printStackTrace();
         }
 
-        registeredVar.setValue(37);
-        registeredVar.setValue(1334);
+        registeredVar.setValue(new Date(System.currentTimeMillis()));
+        registeredVar.setValue(new Date(System.currentTimeMillis()));
 
         try {
             Thread.sleep(2000);
@@ -19,7 +23,7 @@ public class IntegerTest {
             e.printStackTrace();
         }
 
-        registeredVar.setValue(334);
+        registeredVar.setValue(new Date(System.currentTimeMillis()));
 
         try {
             Thread.sleep(3000);
@@ -27,7 +31,7 @@ public class IntegerTest {
             e.printStackTrace();
         }
 
-        registeredVar.setValue(34235);
+        registeredVar.setValue(new Date(System.currentTimeMillis()));
 
         System.out.println("\nLatest generic value: "+registeredVar.getValue());
         System.out.println("Number of times changed: "+registeredVar.getTimesChanged() +"\n");
@@ -40,5 +44,4 @@ public class IntegerTest {
         System.out.println("Max Value: "+registeredVar.getMax());
 
     }
-
 }
