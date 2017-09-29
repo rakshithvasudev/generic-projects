@@ -45,7 +45,8 @@ public class Main {
                             lockedDiceFaceValue = diceRollsValues[diceSelection - 1];
                             otherValue = game.rollDice()[0];
                             game.updateScoreBoard(lockedDiceFaceValue + otherValue);
-                            System.out.println("Added locked value: "+lockedDiceFaceValue +" and other value: "+otherValue+" to scoreboard, " +
+                            System.out.println("Added locked value: "+lockedDiceFaceValue
+                                    +" and other value: "+otherValue+" to scoreboard, " +
                                     "whose sum is:"+(lockedDiceFaceValue + otherValue));
                         }else {
                             System.out.println("You have to enter either 1 or 2. No other values. \n");

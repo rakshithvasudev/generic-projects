@@ -14,12 +14,15 @@ public class Game {
     private Map<Integer, Integer> chosenValues;
     private Die die1, die2;
     private boolean isGameFinished;
+    public static final int MINDICESUM = 2;
+    public static final int MAXDICESUM = 12;
+
 
     public Game() {
         die1 = new Die();
         die2 = new Die();
         chosenValues = new HashMap<>();
-        isGameFinished = false;
+        setGameFinished(false);
         initializeGame();
     }
 
@@ -29,8 +32,8 @@ public class Game {
      * map are the number of times it was rolled. To begin the game, the keys are initialized to 0's.
      */
     private void initializeGame() {
-        for (int i = 2; i <= 12; i++){
-            chosenValues.put(i, 0);
+        for (int incr = MINDICESUM; incr <= MAXDICESUM; incr++){
+            chosenValues.put(incr, 0);
         }
     }
 
@@ -93,7 +96,7 @@ public class Game {
                 return false;
             }
         }
-        isGameFinished = true;
+        setGameFinished(true);
         return true;
     }
 
@@ -105,5 +108,13 @@ public class Game {
             System.out.println("Finished Scoreboard is as follows: " + chosenValues + "\n \n");
         else
             System.out.println("Current Scoreboard is as follows: " + chosenValues + "\n \n");
+    }
+
+    /**
+     * Sets the game finished based on the status passed.
+     * @param status True or False based on the value passed.
+     */
+    public void setGameFinished(boolean status){
+        isGameFinished = status;
     }
 }

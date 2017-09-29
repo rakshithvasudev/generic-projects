@@ -10,6 +10,8 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Die {
     private int faceValue;
+    public static final int LOWERVALUE = 1;
+    public static final int HIGHERVALUE = 6;
 
     /**
      * This function simulates the roll event that can return any random
@@ -18,7 +20,7 @@ public class Die {
      * @return a random value between 1 and 6 using ThreadLocalRandom.
      */
     public int roll() {
-        faceValue = ThreadLocalRandom.current().nextInt(1, 6 + 1);
+        faceValue = ThreadLocalRandom.current().nextInt(LOWERVALUE, HIGHERVALUE + 1);
         return faceValue;
     }
 
