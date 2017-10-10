@@ -4,9 +4,9 @@
  */
 public class Car {
     protected String name;
-    protected int length;
-    protected int height;
-    protected int weight;
+    protected float length;
+    protected float height;
+    protected float weight;
     protected String[] options;
 
     /**
@@ -33,27 +33,27 @@ public class Car {
         this.name = name;
     }
 
-    public int getLength() {
+    public float getLength() {
         return length;
     }
 
-    public void setLength(int length) {
+    public void setLength(float length) {
         this.length = length;
     }
 
-    public int getHeight() {
+    public float getHeight() {
         return height;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(float height) {
         this.height = height;
     }
 
-    public int getWeight() {
+    public float getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(float weight) {
         this.weight = weight;
     }
 

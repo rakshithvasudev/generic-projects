@@ -7,7 +7,7 @@ import java.util.*;
 public class Utilities {
 
     public static void main(String[] args) {
-        findUniqueCarTypes();
+//        findUniqueCarTypes();
         String[] lights =  {"12,123"};
         System.out.println(new CargoCar("Name",122,12,12344,lights));
 

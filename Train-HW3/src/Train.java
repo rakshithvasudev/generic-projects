@@ -16,7 +16,7 @@ public class Train {
      * Gets the total weight of all the cars in the train.
      * @return total weight of all cars.
      */
-    public int evalTotalWeight(){
+    public float evalTotalWeight(){
         int totalWeight = 0;
         for (Car e :trainCars) {
             totalWeight+=e.getWeight();
@@ -27,8 +27,7 @@ public class Train {
 
     @Override
     public String toString() {
-
-
-
+    String trainDescription = "Train "+ "Train: #1" + " TotalWt: "+evalTotalWeight()+ " kg.";
+    return trainDescription;
     }
 }
