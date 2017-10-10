@@ -7,23 +7,14 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class CSVReader {
 
-    public static void main(String[] args) {
-
-        // specify the name of the file to be read.
-        String filename = "train1.csv";
-
-        // prints the csv of the file line by line.
-        for (String[] e : readFile(filename))
-            System.out.println(Arrays.toString(e));
-    }
-
     /**
      * Reads a CSV file and returns the all the lines as an array of string[].
+     * reference taken from https://www.mkyong.com/java/how-to-read-and-parse-csv-file-in-java/
+     *
      * @param fileName name of the file to be read.
      * @return list of lines read, that is an array of strings.
      */

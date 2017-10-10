@@ -76,7 +76,7 @@ public class Car {
 
         String carType =  getClass().toString().replace("class ","" ).
                 replace("Car","");
-        
+
         return carType + " " + getName() + " L*H : "+ getLength()+
                 " x " +getHeight() + " " +" Wt: " +getWeight();
     }
