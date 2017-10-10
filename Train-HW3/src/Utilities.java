@@ -1,7 +1,16 @@
 import java.util.*;
 
+/**
+ * Created by Rakshith on oct 9 2017, for CSC527 - HW3.
+ * This class is used to store general helper functions that needs to be used often.
+ */
 public class Utilities {
-    /**
+
+    public static void main(String[] args) {
+        findUniqueCarTypes();
+    }
+
+     /**
      * Helps to find unique car types from all csv files.
      */
     public static void findUniqueCarTypes(){
@@ -11,12 +20,14 @@ public class Utilities {
        // choose unwanted strings to be removed here.
         String[] toRemove = {"TYPE"};
         List<String> allCarTypes = new ArrayList<>();
-        Set<String> uniqueCars = null;
+        Set<String> uniqueCars;
 
         // go through all the filenames and getTypesFromFile
         // merge all those values into the list.
         for (String e:filenames) {
             List<String> currentType  = getTypesFromFile(e);
+
+            //merge the currentType into allCarType
             allCarTypes.addAll(currentType);
         }
 
@@ -24,17 +35,16 @@ public class Utilities {
         // using the merged values.
         uniqueCars = new HashSet<>(allCarTypes);
 
-        // remove unwanted elements from the hashset defined above.
-        for (String e : toRemove)
+        // remove unwanted elements in hashset defined above.
+        // Add elements "toRemove" to remove elements here.
+        for (String e : toRemove){
             uniqueCars.remove(e);
+        }
 
         // print unique cars after removing unwanted elements.
         System.out.println(uniqueCars);
     }
 
-    public static void main(String[] args) {
-        findUniqueCarTypes();
-    }
 
     /**
      * prints all the CSV contents from a file.
