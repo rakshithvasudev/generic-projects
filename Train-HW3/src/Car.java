@@ -59,9 +59,8 @@ public class Car {
 
     @Override
     public String toString() {
-        String carType =  getClass().toString().replace("class ","" ).replace("Car","");
-        String carDetails = carType + " " + getName() + " L*H : "+
-                getLength()+ " x " +getHeight() + " " +" Wt: " +getWeight();
-        return carDetails;
+        String carType =  getClass().toString().replace("class ","" ).
+                replace("Car","");
+        return carType + " " + getName() + " L*H : "+ getLength()+ " x " +getHeight() + " " +" Wt: " +getWeight();
     }
 }
