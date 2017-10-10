@@ -12,7 +12,7 @@ import java.util.List;
 public class CSVReader {
 
     /**
-     * Reads a CSV file and returns the all the lines as an array of string[].
+     * Reads a CSV file and returns the all the lines as an List of string[].
      * reference taken from https://www.mkyong.com/java/how-to-read-and-parse-csv-file-in-java/
      *
      * @param fileName name of the file to be read.
