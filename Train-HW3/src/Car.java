@@ -1,9 +1,21 @@
-public abstract class Car {
+/**
+ * Created by Rakshith on oct 9 2017, for CSC527 - HW3.
+ * This car is a blueprint that other cars inherit from.
+ */
+public class Car {
     private String name;
-    private String length;
+    private int length;
     private int height;
     private int weight;
     private String[] options;
+
+    public Car(String name, int length, int height, int weight, String[] options) {
+        this.name = name;
+        this.length = length;
+        this.height = height;
+        this.weight = weight;
+        this.options = options;
+    }
 
     public String getName() {
         return name;
@@ -13,11 +25,11 @@ public abstract class Car {
         this.name = name;
     }
 
-    public String getLength() {
+    public int getLength() {
         return length;
     }
 
-    public void setLength(String length) {
+    public void setLength(int length) {
         this.length = length;
     }
 
