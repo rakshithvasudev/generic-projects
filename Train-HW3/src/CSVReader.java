@@ -1,13 +1,13 @@
-/**
- * Created by Rakshith on oct 9 2017, for CSC527 - HW3.
- * This class is used to read CSV files.
- */
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * Created by Rakshith on oct 9 2017, for CSC527 - HW3.
+ * This class is used to read CSV files.
+ */
 
 public class CSVReader {
 

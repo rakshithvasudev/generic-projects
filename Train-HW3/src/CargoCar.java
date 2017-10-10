@@ -18,11 +18,20 @@ public class CargoCar extends Car {
         super(name, length, height, weight, options);
     }
 
+    /**
+     * This method ensures that all the inherited classes stick to the required representation
+     * as indicated by the requirement specs.
+     *
+     * The only reason why tostring is overriden in this class alone is because
+     * this class name by default has "Car" keyword in it.
+     *
+     * example: CarType Name L*H : l x h  Wt: wt
+     * @return expected text representation of the car as indicated in the example.
+     */
     @Override
     public String toString() {
         String carType = "CargoCar";
-        String carDetails = carType + " " + this.name + " L*H : "+
-                this.length+ " x " +this.height + " " +" Wt: " +this.weight;
-        return carDetails;
+        return carType + " " + getName() + " L*H : "+
+                getLength()+ " x " + getHeight() + " " +" Wt: " + getWeight();
     }
 }
