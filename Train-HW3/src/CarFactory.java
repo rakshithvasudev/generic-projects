@@ -14,7 +14,7 @@ public class CarFactory {
      * @param height height of the car.
      * @param weight weight of the car.
      * @param options options of the car.
-     * @return
+     * @return car generic car if no types were matched.
      */
     public static Car GenerateCar(String type,String name, int length, int height, int weight, String[] options){
 
