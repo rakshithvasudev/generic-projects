@@ -10,11 +10,11 @@ public class Car {
     protected String[] options;
 
     public Car(String name, int length, int height, int weight, String[] options) {
-        this.name = name;
-        this.length = length;
-        this.height = height;
-        this.weight = weight;
-        this.options = options;
+        setName(name);
+        setLength(length);
+        setHeight(height);
+        setWeight(weight);
+        setOptions(options);
     }
 
     public String getName() {
@@ -60,8 +60,8 @@ public class Car {
     @Override
     public String toString() {
         String carType =  getClass().toString().replace("class ","" ).replace("Car","");
-        String carDetails = carType + " " + this.name + " L*H : "+
-                this.length+ " x " +this.height + " " +" Wt: " +this.weight;
+        String carDetails = carType + " " + getName() + " L*H : "+
+                getLength()+ " x " +getHeight() + " " +" Wt: " +getWeight();
         return carDetails;
     }
 }
