@@ -42,6 +42,7 @@ public class Utilities {
         }
 
         // print unique cars after removing unwanted elements.
+        System.out.print("Here are your unique car types: ");
         System.out.println(uniqueCars);
     }
 
