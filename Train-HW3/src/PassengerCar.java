@@ -2,10 +2,9 @@
  * Created by Rakshith on oct 9 2017, for CSC527 - HW3.
  * This car is a concrete class that gets created based on the type.
  */
-public class CargoCar extends Car {
-
+public class PassengerCar extends Car {
     /**
-     * Creates a CargoCar from the car blueprint.
+     * Creates a PassengerCar from the car blueprint.
      *
      * @param name name of the car.
      * @param length length of car.
@@ -13,8 +12,7 @@ public class CargoCar extends Car {
      * @param weight weight of car.
      * @param options options in the car
      */
-
-    public CargoCar(String name, int length, int height, int weight, String[] options) {
+    public PassengerCar(String name, int length, int height, int weight, String[] options) {
         super(name, length, height, weight, options);
     }
 }
