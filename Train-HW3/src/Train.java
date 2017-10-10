@@ -24,10 +24,23 @@ public class Train {
         return totalWeight;
     }
 
-
+    /**
+     * Gets the description for the entire train as required by specs.
+     * @return description for train.
+     */
     @Override
     public String toString() {
-    String trainDescription = "Train "+ "Train: #1" + " TotalWt: "+evalTotalWeight()+ " kg.";
-    return trainDescription;
+
+        // get the description for train
+        String trainDescription = "Train "+ "Train1" +" # cars: "+trainCars.size() +" TotalWt: "+evalTotalWeight()+ " kg.";
+        StringBuilder carDescription = new StringBuilder("\n");
+
+        // get the description for all cars
+        for (Car e:trainCars) {
+            carDescription.append(e.toString());
+            carDescription.append("\n");
+         }
+
+     return trainDescription + carDescription.toString();
     }
 }

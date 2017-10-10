@@ -20,7 +20,10 @@ public class CSVReader {
      */
     public static List<String[]> readFile(String fileName){
         String line;
+
         List<String[]> lines = new ArrayList<>();
+
+        // defining delimiting character
         String cvsSplitBy = ",";
 
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
