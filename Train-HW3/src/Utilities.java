@@ -7,7 +7,11 @@ import java.util.*;
 public class Utilities {
 
     public static void main(String[] args) {
-        findUniqueCarTypes();
+//        findUniqueCarTypes();
+        String[] lights =  {"12,123"};
+        System.out.println(new CargoCar("name",122,12,12344,lights));
+//        System.out.println();
+//        System.out.println(new Utilities());
     }
 
      /**
@@ -68,5 +72,11 @@ public class Utilities {
             carTypes.add(e[0]);
         }
         return carTypes;
+    }
+
+
+    @Override
+    public String toString() {
+        return getClass().toString().replace("class ","");
     }
 }

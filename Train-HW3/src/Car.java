@@ -56,4 +56,12 @@ public class Car {
     public void setOptions(String[] options) {
         this.options = options;
     }
+
+    @Override
+    public String toString() {
+        String carType =  getClass().toString().replace("class ","" ).replace("Car ","");
+        String carDetails = carType + " " + this.name + " L*H : "+
+                this.length+ " x " +this.height + " " +" Wt: " +this.weight;
+        return carDetails;
+    }
 }
