@@ -17,4 +17,12 @@ public class CargoCar extends Car {
     public CargoCar(String name, int length, int height, int weight, String[] options) {
         super(name, length, height, weight, options);
     }
+
+    @Override
+    public String toString() {
+        String carType = "CargoCar";
+        String carDetails = carType + " " + this.name + " L*H : "+
+                this.length+ " x " +this.height + " " +" Wt: " +this.weight;
+        return carDetails;
+    }
 }

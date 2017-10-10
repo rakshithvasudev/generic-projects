@@ -3,11 +3,11 @@
  * This car is a blueprint that other cars inherit from.
  */
 public class Car {
-    private String name;
-    private int length;
-    private int height;
-    private int weight;
-    private String[] options;
+    protected String name;
+    protected int length;
+    protected int height;
+    protected int weight;
+    protected String[] options;
 
     public Car(String name, int length, int height, int weight, String[] options) {
         this.name = name;
@@ -59,7 +59,7 @@ public class Car {
 
     @Override
     public String toString() {
-        String carType =  getClass().toString().replace("class ","" ).replace("Car ","");
+        String carType =  getClass().toString().replace("class ","" ).replace("Car","");
         String carDetails = carType + " " + this.name + " L*H : "+
                 this.length+ " x " +this.height + " " +" Wt: " +this.weight;
         return carDetails;

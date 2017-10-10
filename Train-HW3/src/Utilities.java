@@ -9,7 +9,7 @@ public class Utilities {
     public static void main(String[] args) {
 //        findUniqueCarTypes();
         String[] lights =  {"12,123"};
-        System.out.println(new CargoCar("name",122,12,12344,lights));
+        System.out.println(new CargoCar("Name",122,12,12344,lights));
 //        System.out.println();
 //        System.out.println(new Utilities());
     }
