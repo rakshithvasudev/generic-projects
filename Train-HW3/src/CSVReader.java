@@ -41,4 +41,20 @@ public class CSVReader {
         return lines;
     }
 
+    /**
+     * Retruns lines without the header.
+     * @param fileName name of the file to be read.
+     * @return list of lines read, that is an array of strings without first line.
+     */
+    public static List<String[]> readFileWithoutHeader(String fileName){
+        List<String[]> allLinesWithoutFirstLine;
+        // get all lines from CSV reader
+        allLinesWithoutFirstLine = readFile(fileName);
+        // Remove the header line aka first line.
+        allLinesWithoutFirstLine.remove(0);
+
+        return allLinesWithoutFirstLine;
+    }
+
+
 }
