@@ -63,7 +63,7 @@ public class CSVReader {
      * @param fileName  name of the file to be read.
      * @return Header line Read.
      */
-    public static String[] readFileWithJustHeader(String fileName){
+    public static String[] readFileHeader(String fileName){
         List<String[]> firstLine;
 
         // get all lines from CSV reader
