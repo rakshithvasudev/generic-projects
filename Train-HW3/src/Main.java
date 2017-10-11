@@ -9,12 +9,11 @@ public class Main {
 
     public static void generateTrainFromFile(String fileName){
 
+//        for (String[] e :CSVReader.readFileWithJustHeader(fileName)) {
+//            System.out.println(Arrays.toString(e));
+//        }
 
-
-        for (String[] e :allLinesWithoutFirstLine) {
-            System.out.println(Arrays.toString(e));
-        }
-
+        System.out.println(Arrays.toString(CSVReader.readFileWithJustHeader(fileName)));
 
     }
 

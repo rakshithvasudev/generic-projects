@@ -2,7 +2,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.IntStream;
 
 /**
  * Created by Rakshith on oct 9 2017, for CSC527 - HW3.
@@ -42,7 +44,7 @@ public class CSVReader {
     }
 
     /**
-     * Retruns lines without the header.
+     * Returns lines without the header.
      * @param fileName name of the file to be read.
      * @return list of lines read, that is an array of strings without first line.
      */
@@ -50,11 +52,24 @@ public class CSVReader {
         List<String[]> allLinesWithoutFirstLine;
         // get all lines from CSV reader
         allLinesWithoutFirstLine = readFile(fileName);
-        // Remove the header line aka first line.
+        // Remove the header line, aka first line.
         allLinesWithoutFirstLine.remove(0);
 
         return allLinesWithoutFirstLine;
     }
 
+    /**
+     * Returns the read file's only header.
+     * @param fileName  name of the file to be read.
+     * @return Header line Read.
+     */
+    public static String[] readFileWithJustHeader(String fileName){
+        List<String[]> firstLine;
+
+        // get all lines from CSV reader
+        firstLine = readFile(fileName);
+
+        return firstLine.get(0);
+    }
 
 }
