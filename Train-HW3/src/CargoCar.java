@@ -14,7 +14,7 @@ public class CargoCar extends Car {
      * @param options options in the car
      */
 
-    public CargoCar(String name, int length, int height, int weight, String[] options) {
+    public CargoCar(String name, float length, float height, float weight, String[] options) {
         super(name, length, height, weight, options);
     }
 

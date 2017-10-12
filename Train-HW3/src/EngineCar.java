@@ -13,7 +13,7 @@ public class EngineCar extends Car {
      * @param weight weight of car.
      * @param options options in the car.
      */
-    public EngineCar(String name, int length, int height, int weight, String[] options) {
+    public EngineCar(String name, float length, float height, float weight, String[] options) {
         super(name, length, height, weight, options);
     }
 }

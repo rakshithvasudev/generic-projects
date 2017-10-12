@@ -16,7 +16,7 @@ public class CarFactory {
      * @param options options of the car.
      * @return generic car if no types were matched.
      */
-    public static Car GenerateCar(String type,String name, int length, int height, int weight, String[] options){
+    public static Car GenerateCar(String type,String name, float length, float height, float weight, String[] options){
 
         // newCar is a dummy variable that never should get returned.
         Car newCar = new Car(name, length,  height,  weight, options);

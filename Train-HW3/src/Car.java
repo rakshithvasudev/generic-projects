@@ -17,13 +17,15 @@ public class Car {
      * @param weight weight of the car.
      * @param options options of the car.
      */
-    public Car(String name, int length, int height, int weight, String[] options) {
+    public Car(String name, float length, float height, float weight, String[] options) {
         setName(name);
         setLength(length);
         setHeight(height);
         setWeight(weight);
         setOptions(options);
     }
+
+
 
     public String getName() {
         return name;

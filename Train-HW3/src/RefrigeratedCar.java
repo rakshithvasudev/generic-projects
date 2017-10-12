@@ -12,7 +12,7 @@ public class RefrigeratedCar extends Car {
      * @param weight weight of car.
      * @param options options in the car.
      */
-    public RefrigeratedCar(String name, int length, int height, int weight, String[] options) {
+    public RefrigeratedCar(String name, float length, float height, float weight, String[] options) {
         super(name, length, height, weight, options);
     }
 }
