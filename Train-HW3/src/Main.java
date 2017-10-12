@@ -46,15 +46,23 @@ public class Main {
                 length = Float.valueOf(e[2]);
                 height = Float.valueOf(e[3]);
                 weight = Float.valueOf(e[4]);
+
+                // anticipating exceptions
                 option1 = e[5];
                 option2 = e[6];
                 option3 = e[7];
+
+
+                if (type.equalsIgnoreCase("Engine")){
+                    engineFound = true;
+                }
 
             }catch (Exception ex){
                 System.out.println(ex);
             }
 
-
+            // check if this is the last line and engine is still not found
+            
         }
 
     }
