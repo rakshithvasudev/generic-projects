@@ -32,7 +32,7 @@ public class Train {
     public String toString() {
 
         // get the description for train
-        String trainDescription = "Train "+ "Train1" +" # cars: "+trainCars.size() +" TotalWt: "+evalTotalWeight()+ " kg.";
+        String trainDescription = "Train "+ "Train1" +" #cars: "+trainCars.size() +" TotalWt: "+evalTotalWeight()+ " kg.";
         StringBuilder carDescription = new StringBuilder("\n");
 
         // get the description for all cars

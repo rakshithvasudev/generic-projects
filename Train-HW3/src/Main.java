@@ -5,12 +5,38 @@ public class Main {
   // this contains all the Car objects added.
   private static List<Car> carsTrain = new ArrayList<>();
 
+    /**
+     * Main function where assembly of cars happen.
+     * @param args
+     * @throws EngineNotFoundException if there are no Engine Cars from the given file.
+     */
+    public static void main(String[] args)  {
 
-    public static void main(String[] args) throws EngineNotFoundException {
+       // Name of the file from which the cars must be generated.
+        String fileName = "train1.csv";
 
-            generateTrainFromFile("train4.csv");
-            printAddedCars();
+        try {
+            generateCarsFromFile(fileName);
+        } catch (EngineNotFoundException e) {
+            e.printStackTrace();
+        }
 
+        // Just to check if cars are added properly.
+        // printAddedCars();
+
+        createTrainFromCars();
+    }
+
+    /**
+     * Passes on the assembly of cars to create a Train class
+     * and prints the the entire Train.
+     */
+    private static void createTrainFromCars() {
+        // create a new Train.
+        Train train = new Train(carsTrain);
+
+        // print the train object.
+        System.out.println(train);
     }
 
     /**
@@ -26,7 +52,7 @@ public class Main {
      *
      * Generates an entire train from the given file.
      */
-    public static void generateTrainFromFile(String fileName) throws EngineNotFoundException {
+    public static void generateCarsFromFile(String fileName) throws EngineNotFoundException {
 
         // skip the header and get other line entries.
         List<String[]> linesFromFileWithoutHeader = CSVReader.readFileWithoutHeader(fileName);
@@ -36,7 +62,7 @@ public class Main {
         // when an engine car was not found even after the last line.
         int counter = 0;
 
-        // this flag is used to throw exceptions
+        // this flag is used to throw Engine not Found Exceptions.
         boolean isEngineFound = false;
 
         // the following are features for the car.
@@ -53,8 +79,10 @@ public class Main {
         // iterate through all the lines from the file
         for (String[] e:linesFromFileWithoutHeader){
 
-                // [TYPE, NAME, LENGTH, HEIGHT, WEIGHT, OPTION1, OPTION2, OPTION3]
-                // get the type of the car located at arrays index 0 and other elements likewise.
+                // [TYPE, NAME, LENGTH, HEIGHT, WEIGHT, OPTION1, OPTION2, OPTION3] -
+                // array indices align respectively. ex: [0]-TYPE, [1]-NAME,
+                // [2] - LENGTH get the type of the car
+                // located at arrays index 0 and other elements likewise.
                 type = e[0];
 
                 // update engine availability
@@ -73,7 +101,6 @@ public class Main {
                  option1 = e[5];
                  option2 = e[6];
                  option3 = e[7];
-
             }catch (Exception ex){// do nothing}
 
             // check if this is the last line and engine is still not found
