@@ -2,7 +2,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-  // this contains all the Car objects added.
+  // this list contains all the Car objects generated.
+  // This Car uses abstraction to add any type of
+  // car inside the array list. Ex: EngineCar, TankerCar, etc
+  // can be elements inside this carsTrain list.
   private static List<Car> carsTrain = new ArrayList<>();
 
     /**
@@ -15,15 +18,19 @@ public class Main {
        // Name of the file from which the cars must be generated.
         String fileName = "train1.csv";
 
+        // When a file doesn't contain an EngineCar, generateCars()
+        // method throws EngineNotFound Exception.
         try {
             generateCarsFromFile(fileName);
         } catch (EngineNotFoundException e) {
             e.printStackTrace();
         }
 
-        // Just to check if cars are added properly.
+        // Just to check if cars are added properly printAddedCars() is used.
         // printAddedCars();
 
+        // create a Train from all cars and print the entire
+        // train object.
         createTrainFromCars();
     }
 
@@ -81,8 +88,7 @@ public class Main {
 
                 // [TYPE, NAME, LENGTH, HEIGHT, WEIGHT, OPTION1, OPTION2, OPTION3] -
                 // array indices align respectively. ex: [0]-TYPE, [1]-NAME,
-                // [2] - LENGTH get the type of the car
-                // located at arrays index 0 and other elements likewise.
+                // [2] - LENGTH , etc. other elements likewise.
                 type = e[0];
 
                 // update engine availability
@@ -101,7 +107,7 @@ public class Main {
                  option1 = e[5];
                  option2 = e[6];
                  option3 = e[7];
-            }catch (Exception ex){// do nothing}
+            }catch (Exception ex){// do nothing and keep building the Car.}
 
             // check if this is the last line and engine is still not found
             if((counter == linesFromFileWithoutHeader.size()-1) &&(!isEngineFound)){
@@ -112,6 +118,8 @@ public class Main {
             options = new String[]{option1, option2, option3};
 
             // add a new car to the list of cars for the train
+            // invoke the GenerateCar method from Car Factory to return an
+            // appropriate car based on the type passed.
             carsTrain.add(CarFactory.GenerateCar(type,name,length,height,weight,options));
 
             //increment the counter
