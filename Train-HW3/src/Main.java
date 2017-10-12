@@ -2,13 +2,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
+  // this contains all the Car objects added.
   private static List<Car> carsTrain = new ArrayList<>();
 
-    public static void main(String[] args) {
-        try {
-            generateTrainFromFile("train1.csv");
-        } catch (EngineNotFoundException e) {
-            e.printStackTrace();
+
+    public static void main(String[] args) throws EngineNotFoundException {
+
+            generateTrainFromFile("train4.csv");
+            printAddedCars();
+
+    }
+
+    /**
+     * Prints all the added cars from the list
+     */
+    private static void printAddedCars() {
+        for (Car e: carsTrain){
+            System.out.println(e);
         }
     }
 
@@ -44,7 +54,7 @@ public class Main {
         for (String[] e:linesFromFileWithoutHeader){
 
                 // [TYPE, NAME, LENGTH, HEIGHT, WEIGHT, OPTION1, OPTION2, OPTION3]
-                // get the type of the car located at arrays index 0.
+                // get the type of the car located at arrays index 0 and other elements likewise.
                 type = e[0];
 
                 // update engine availability
@@ -64,7 +74,7 @@ public class Main {
                  option2 = e[6];
                  option3 = e[7];
 
-            }catch (Exception ex){}
+            }catch (Exception ex){// do nothing}
 
             // check if this is the last line and engine is still not found
             if((counter == linesFromFileWithoutHeader.size()-1) &&(!isEngineFound)){
@@ -79,11 +89,11 @@ public class Main {
 
             //increment the counter
             counter++;
+
+            }
+
         }
 
     }
-
-
-
 
 }
