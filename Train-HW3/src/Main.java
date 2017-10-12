@@ -1,8 +1,8 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Main {
+  private static List<Car> carsTrain = new ArrayList<>();
 
     public static void main(String[] args) {
         try {
@@ -10,15 +10,13 @@ public class Main {
         } catch (EngineNotFoundException e) {
             e.printStackTrace();
         }
-
     }
 
     /**
-     * [TYPE, NAME, LENGTH, HEIGHT, WEIGHT, OPTION1, OPTION2, OPTION3]
+     *
      * Generates an entire train from the given file.
      */
     public static void generateTrainFromFile(String fileName) throws EngineNotFoundException {
-        List<Car> carsTrain = new ArrayList<>();
 
         // skip the header and get other line entries.
         List<String[]> linesFromFileWithoutHeader = CSVReader.readFileWithoutHeader(fileName);
@@ -42,12 +40,11 @@ public class Main {
         float height;
         float weight;
 
-        int currentMax = 0;
-
         // iterate through all the lines from the file
         for (String[] e:linesFromFileWithoutHeader){
-            currentMax = e.length;
 
+                // [TYPE, NAME, LENGTH, HEIGHT, WEIGHT, OPTION1, OPTION2, OPTION3]
+                // get the type of the car located at arrays index 0.
                 type = e[0];
 
                 // update engine availability
@@ -63,14 +60,9 @@ public class Main {
             // this could essentially throw IndexOutOfBounds Exception.
             try{
                 // anticipating exceptions
-//                if(currentMax>4 && currentMax<6)
-                    option1 = e[5];
-
-//                if(currentMax>5 && currentMax<7)
-                    option2 = e[6];
-
-//                if(currentMax>6 && currentMax<8)
-                    option3 = e[7];
+                 option1 = e[5];
+                 option2 = e[6];
+                 option3 = e[7];
 
             }catch (Exception ex){}
 
@@ -79,8 +71,13 @@ public class Main {
                 throw new  EngineNotFoundException("Sorry! No engine found! Can't run this train.");
             }
 
+            // update options based on new values
             options = new String[]{option1, option2, option3};
+
+            // add a new car to the list of cars for the train
             carsTrain.add(CarFactory.GenerateCar(type,name,length,height,weight,options));
+
+            //increment the counter
             counter++;
         }
 
