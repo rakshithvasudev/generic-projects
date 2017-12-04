@@ -109,7 +109,7 @@ public class Main {
                  option3 = e[7];
             }catch (Exception ex){// do nothing and keep building the Car.}
 
-            // check if this is the last line and engine is still not found
+            // check if this is the last line and "Engine" is still not found
             if((counter == linesFromFileWithoutHeader.size()-1) &&(!isEngineFound)){
                 throw new  EngineNotFoundException("Sorry! No engine found! Can't run this train.");
             }
