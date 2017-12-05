@@ -7,8 +7,16 @@ public class Main {
         DrawingPanel dp = new DrawingPanel(500,500);
         dp.setVisible(true);
         g = dp.getGraphics();
-        g.setColor(Color.RED);
-        g.fillRect(17, 45, 139, 241);
-        g.drawOval(234, 77, 100, 100);
+        g.setColor(Color.BLACK);
+        g.fillRect(0,0,4, 4);
+        g.fillRect(4,4,4,4);
+        g.fillRect(4,0,4,4);
+        g.fillRect(0,4,4,4);
+
+
+//        int x = 0;
+//
+//        for (x=0;x<)
+
     }
 }
