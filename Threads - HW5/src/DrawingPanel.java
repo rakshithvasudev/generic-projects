@@ -14,12 +14,14 @@ import static java.awt.RenderingHints.*;
 public class DrawingPanel {
     public static final int DELAY = 250;  // ms delay between repaints
 
-    private JFrame frame;         // overall window frame
-    private JPanel panel;         // overall drawing surface
-    private Graphics g;           // graphics context for painting
-    private JLabel statusBar;     // status bar showing mouse position
+    private JFrame frame;                       // overall window frame
+    private JPanel panel;                       // overall drawing surface
+    private Graphics g;                         // graphics context for painting
+    private JLabel statusBar;                   // status bar showing mouse position
     private int width,height,initialPixel ;     // adding width and height to later clear
-    private BufferedImage image;
+    private BufferedImage image;                // image that gets drawn on the screen
+
+
     // constructs a drawing panel of given width and height enclosed in a window
     public DrawingPanel(int width, int height) {
 
@@ -67,13 +69,13 @@ public class DrawingPanel {
 
     }
 
+    // clears the entire panel
     public void clear(){
         int[] pixels = new int[width * height];
         for (int i = 0; i < pixels.length; i++) {
             pixels[i] = initialPixel;
         }
         image.setRGB(0, 0, width, height, pixels, 0, 1);
-
     }
 
 

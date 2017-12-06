@@ -3,7 +3,12 @@ public class Main{
        Circle c = new Circle(45,45,10);
        for (int k =0;k<500;k++)
        {
-           c.moveCircle(k,123);
+           try {
+               c.moveCircle(k,123);
+               Thread.sleep(100);
+           } catch (InterruptedException e) {
+               e.printStackTrace();
+           }
        }
     }
 }
