@@ -1,8 +1,8 @@
 import java.awt.*;
 
 /**
- * By Rakshith on 4th Tuesday 2017 for CSC 527- Software
- * construction threads assignment- HW5
+ * By Rakshith on 4th Dec 2017 for CSC 527- Software
+ * construction - threads assignment- HW5
  * This class constructs and manipulates the circle.
  */
 public class Circle{
