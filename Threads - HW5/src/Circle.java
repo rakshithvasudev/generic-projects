@@ -20,11 +20,14 @@ public class Circle extends JPanel{
 
     }
 
+    public void clearCircle(){
+        drawingPanel.clear();
+    }
+
+
     public void moveCircle(int x, int y){
-        System.out.println("Move circle called");
-        this.x=x;
-        this.y=y;
-        repaint();
+        clearCircle();
+        graphics.fillOval(x,y,radius,radius);
     }
 
     @Override

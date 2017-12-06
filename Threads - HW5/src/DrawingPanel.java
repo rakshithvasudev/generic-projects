@@ -18,11 +18,17 @@ public class DrawingPanel {
     private JPanel panel;         // overall drawing surface
     private Graphics g;           // graphics context for painting
     private JLabel statusBar;     // status bar showing mouse position
-
+    private int width,height,initialPixel ;     // adding width and height to later clear
+    private BufferedImage image;
     // constructs a drawing panel of given width and height enclosed in a window
     public DrawingPanel(int width, int height) {
+
+        // let the dims be known globally
+        this.width = width;
+        this.height = height;
+
         // set up the empty image onto which we will draw
-        BufferedImage image = new BufferedImage(width, height, TYPE_INT_ARGB);
+        image = new BufferedImage(width, height, TYPE_INT_ARGB);
         this.g = image.getGraphics();
         this.g.setColor(Color.BLACK);
         JLabel label = new JLabel();
@@ -55,7 +61,21 @@ public class DrawingPanel {
         TimerListener listener = new TimerListener();
         Timer timer = new Timer(DELAY, listener);
         timer.start();
+
+        // get the initial pixel value
+        initialPixel = image.getRGB(0, 0);
+
     }
+
+    public void clear(){
+        int[] pixels = new int[width * height];
+        for (int i = 0; i < pixels.length; i++) {
+            pixels[i] = initialPixel;
+        }
+        image.setRGB(0, 0, width, height, pixels, 0, 1);
+
+    }
+
 
     // obtain the Graphics object to draw on the panel
     public Graphics getGraphics() {
