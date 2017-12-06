@@ -40,4 +40,27 @@ public class Main {
         );
 
     }
+
+    /**
+     * Checks if there is an opportunity for a new organism to be grown
+     * based on the rules that :
+     * There was an organism at the location in the last generation and two of the eight
+       neighboring locations also contained organisms;
+     * Three of the eight neighboring locations contained organisms in the last generation.
+     * @param x
+     * @param y
+     * @return
+     */
+    public boolean checkIfFillable(int x, int y){
+        int occupancyCounter = 0;
+
+
+
+
+
+
+        return (occupancyCounter == 3)||(occupancyCounter ==2);
+    }
+
+
 }
