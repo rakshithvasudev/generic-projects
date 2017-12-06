@@ -12,8 +12,6 @@ public class Main {
     private static final int HEIGHT = 400;
     private static DrawingPanel drawingPanel = new DrawingPanel(WIDTH, HEIGHT);
     private static Graphics graphics = drawingPanel.getGraphics();
-    private static List<Integer> randXPoints = new ArrayList<>();
-    private static List<Integer> randYPoints = new ArrayList<>();
     private static Map<Coordinates2D<Integer>,Boolean> occupiedStatus = new HashMap<>();
 
 
@@ -31,8 +29,6 @@ public class Main {
             int randX = randomNumberGenerator(0, WIDTH);
             int randY = randomNumberGenerator(0, HEIGHT);
             graphics.fillRect(randX, randY, 4, 4);
-            randXPoints.add(randX);
-            randYPoints.add(randY);
             occupiedStatus.put(new Coordinates2D<>(randX,randY),true);
         }
 
