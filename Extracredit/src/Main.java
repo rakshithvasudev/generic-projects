@@ -8,11 +8,11 @@ import java.util.stream.IntStream;
 public class Main {
     private static final int WIDTH = 600;
     private static final int HEIGHT = 400;
+    private static final int POINT_SIZE = 4;
     private static DrawingPanel drawingPanel = new DrawingPanel(WIDTH, HEIGHT);
     private static Graphics graphics = drawingPanel.getGraphics();
     private static List<Integer> randXPoints = new ArrayList<>();
     private static List<Integer> randYPoints = new ArrayList<>();
-    private static int points[][] = new int[WIDTH][HEIGHT];
 
     public static void main(String[] args) {
             generatePoints(300);
@@ -27,13 +27,14 @@ public class Main {
         for (int i = 0; i < numberOfPoints; i++) {
             int randX = randomNumberGenerator(0, WIDTH);
             int randY = randomNumberGenerator(0, HEIGHT);
-            graphics.fillRect(randX, randY, 4, 4);
+            graphics.fillRect(randX, randY, POINT_SIZE, POINT_SIZE);
             randXPoints.add(randX);
             randYPoints.add(randY);
 
         }
 
-        // prints the (x,y) pairs
+        // prints the zip (x,y) pairs using java 8 lamba functions
+
         System.out.println(IntStream
                 .range(0,Math.min(randXPoints.size(),randYPoints.size()))
                 .mapToObj((i -> "("+randXPoints.get(i) + ", " + randYPoints.get(i) +")"))
