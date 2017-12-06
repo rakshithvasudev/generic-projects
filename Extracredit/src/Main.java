@@ -36,8 +36,6 @@ public class Main {
             occupiedStatus.put(new Coordinates2D<>(randX,randY),true);
         }
 
-
-
         System.out.println(occupiedStatus);
     }
 
@@ -53,6 +51,7 @@ public class Main {
      */
     public boolean checkIfFillable(int x, int y){
         int occupancyCounter = 0;
+
 
 
 
