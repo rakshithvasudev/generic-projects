@@ -12,8 +12,9 @@ public class Main {
     public static void main(String[] args) {
         while(true){
             generatePoints();
+            System.out.println("Generated organisms");
             try {
-                Thread.sleep(1000);
+                Thread.sleep(450);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
