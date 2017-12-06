@@ -19,8 +19,23 @@ public class Main implements Runnable{
     @Override
     public void run() {
 
-        if(randomThreadNumber ==0){
+        // left moving thread
+        if(randomThreadNumber == 1){
             
+        }
+
+        // right moving thread
+        else if (randomThreadNumber == 2){
+
+        }
+
+        //top moving thread
+        else if(randomThreadNumber == 3){
+
+        }
+
+        //bottom moving thread
+        else{
 
         }
 
