@@ -1,6 +1,6 @@
 public class Main{
     public static void main(String[] args) {
-       Circle c = new Circle();
-       c.generateCircle(45,45,25);
+       Circle c = new Circle(45,45,10);
+       c.moveCircle(250,145);
     }
 }

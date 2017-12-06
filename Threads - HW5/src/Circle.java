@@ -2,25 +2,35 @@ import javax.swing.*;
 import java.awt.*;
 
 
-public class Circle{
+public class Circle extends JPanel{
 
-    DrawingPanel drawingPanel;
-    Graphics graphics;
+    private DrawingPanel drawingPanel;
+    private Graphics graphics;
+    private int x, y, radius, flag;
 
+    public Circle(int x, int y, int radius){
+        this.x=x;
+        this.y=y;
+        this.radius=radius;
 
-    public Circle(){
         drawingPanel = new DrawingPanel(600,400);
         drawingPanel.setBackground(Color.WHITE);
         graphics = drawingPanel.getGraphics();
-    }
-
-    public void generateCircle(int x, int y, int radius){
         graphics.fillOval(x,y,radius,radius);
+
     }
 
+    public void moveCircle(int x, int y){
+        System.out.println("Move circle called");
+        this.x=x;
+        this.y=y;
+        repaint();
+    }
 
+    @Override
+    protected void paintComponent(Graphics graphics) {
+        super.paintComponent(graphics);
+        System.out.println("Paint component called");
 
-
-
-
+    }
 }

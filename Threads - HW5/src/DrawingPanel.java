@@ -84,12 +84,15 @@ public class DrawingPanel {
         this.frame.toFront();
     }
 
+
     // used for an internal timer that repeatedly repaints the screen
     class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             panel.repaint();
         }
     }
+
+
 
     // draws the status bar text when the mouse moves
     class StatusBarMouseAdapter extends MouseInputAdapter {
