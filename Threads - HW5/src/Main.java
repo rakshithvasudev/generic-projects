@@ -20,58 +20,52 @@ public class Main implements Runnable {
 
         while (true) {
 
-//            if ((c.getX() <= 0) || (c.getX() >= xLoc)) {
-//
-//                System.out.println("Inside X  break");
-//                break;
-//
-//            } else if ((c.getY() <= 0) || (c.getY() >= 0)) {
-//
-//                System.out.println("Inside Y break");
-//                break;
-//            }
 
             // allows threads to enter sequentially
             synchronized (Main.class) {
                 // left moving thread
                 if (randomThreadNumber == 1) {
-                    int delay = randomNumberGenerator(250,375);
+                    int delay = randomNumberGenerator(250, 375);
                     c.moveCircleBy(-5, 0);
-                    introduceDelay(randomNumberGenerator(250,375));
-                    System.out.println("left thread, delay: " +delay +": ("+c.getX()+", "+c.getY()+")");
+                    introduceDelay(randomNumberGenerator(250, 375));
+                    System.out.println("left thread, delay: " + delay + ": (" + c.getX() + ", " + c.getY() + ")");
                 }
 
                 // right moving thread
                 else if (randomThreadNumber == 2) {
-                    int delay = randomNumberGenerator(250,375);
+                    int delay = randomNumberGenerator(250, 375);
                     c.moveCircleBy(5, 0);
                     introduceDelay(delay);
-                    System.out.println("right thread + delay: " +delay +": ("+c.getX()+", "+c.getY()+")");
+                    System.out.println("right thread,  delay: " + delay + ": (" + c.getX() + ", " + c.getY() + ")");
                 }
 
                 //top moving thread (0 is at the top)
                 else if (randomThreadNumber == 3) {
-                    int delay = randomNumberGenerator(250,375);
+                    int delay = randomNumberGenerator(250, 375);
                     c.moveCircleBy(0, -5);
-                    introduceDelay(randomNumberGenerator(250,375));
-                    System.out.println("top thread + delay: " +delay+": ("+c.getX()+", "+c.getY()+")");
+                    introduceDelay(randomNumberGenerator(250, 375));
+                    System.out.println("top thread, delay: " + delay + ": (" + c.getX() + ", " + c.getY() + ")");
                 }
 
                 //bottom moving thread (max y is at the bottom)
                 else {
-                    int delay = randomNumberGenerator(250,375);
+                    int delay = randomNumberGenerator(250, 375);
                     c.moveCircleBy(0, 5);
-                    introduceDelay(randomNumberGenerator(250,375));
-                    System.out.println("bottom thread + delay: " +delay +": ("+c.getX()+", "+c.getY()+")");
+                    introduceDelay(randomNumberGenerator(250, 375));
+                    System.out.println("bottom thread, delay: " + delay + ": (" + c.getX() + ", " + c.getY() + ")");
                 }
 
                 randomThreadNumber = randomNumberGenerator(1, 4);
-
 
             }
         }
     }
 
+    /**
+     * Delays the regular execution by a parameter i.
+     *
+     * @param i defines the delay duration.
+     */
     private void introduceDelay(int i) {
         try {
             Thread.sleep(i);
