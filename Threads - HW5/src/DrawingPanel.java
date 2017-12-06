@@ -9,7 +9,6 @@ import javax.swing.event.*;
 import static javax.swing.JFrame.*;
 import static java.awt.BorderLayout.*;
 import static java.awt.image.BufferedImage.*;
-import static java.awt.RenderingHints.*;
 
 public class DrawingPanel {
     public static final int DELAY = 250;  // ms delay between repaints
@@ -18,7 +17,7 @@ public class DrawingPanel {
     private JPanel panel;                       // overall drawing surface
     private Graphics g;                         // graphics context for painting
     private JLabel statusBar;                   // status bar showing mouse position
-    private int width,height,initialPixel ;     // adding width and height to later clear
+    private int width,height, originalPixel;     // adding width and height to later clear
     private BufferedImage image;                // image that gets drawn on the screen
 
 
@@ -65,7 +64,7 @@ public class DrawingPanel {
         timer.start();
 
         // get the initial pixel value
-        initialPixel = image.getRGB(0, 0);
+        originalPixel = image.getRGB(0, 0);
 
     }
 
@@ -73,7 +72,7 @@ public class DrawingPanel {
     public void clear(){
         int[] pixels = new int[width * height];
         for (int i = 0; i < pixels.length; i++) {
-            pixels[i] = initialPixel;
+            pixels[i] = originalPixel;
         }
         image.setRGB(0, 0, width, height, pixels, 0, 1);
     }

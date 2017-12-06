@@ -1,22 +1,26 @@
 import java.awt.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Main {
 
+    private static DrawingPanel drawingPanel = new DrawingPanel(600, 400);
+    private static Graphics graphics = drawingPanel.getGraphics();
+
+
     public static void main(String[] args) {
-        Graphics g;
-        DrawingPanel dp = new DrawingPanel(500,500);
-        dp.setVisible(true);
-        g = dp.getGraphics();
-        g.setColor(Color.BLACK);
-        g.fillRect(0,0,4, 4);
-        g.fillRect(4,4,4,4);
-        g.fillRect(4,0,4,4);
-        g.fillRect(0,4,4,4);
 
+        for (int i = 0; i < 300; i++) {
+            int randX = randomNumberGenerator(0, 600);
+            int randY = randomNumberGenerator(0, 400);
+            graphics.fillRect(randX, randY, 4, 4);
+        }
+    }
 
-//        int x = 0;
-//
-//        for (x=0;x<)
+    public static int randomNumberGenerator(int min, int max) {
+        return ThreadLocalRandom.current().nextInt(min, max + 1);
+    }
+
+    public static void generatePoints(int numberOfPoints) {
 
     }
 }

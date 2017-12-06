@@ -1,28 +1,35 @@
 // The DrawingPanel class provides a simple interface for drawing persistent
 // images using a Graphics object.
 
-        import java.awt.*;
-        import java.awt.event.*;
-        import java.awt.image.*;
-        import javax.swing.*;
-        import javax.swing.event.*;
-        import static javax.swing.JFrame.*;
-        import static java.awt.BorderLayout.*;
-        import static java.awt.image.BufferedImage.*;
-        import static java.awt.RenderingHints.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.*;
+import javax.swing.*;
+import javax.swing.event.*;
+import static javax.swing.JFrame.*;
+import static java.awt.BorderLayout.*;
+import static java.awt.image.BufferedImage.*;
 
 public class DrawingPanel {
     public static final int DELAY = 250;  // ms delay between repaints
 
-    private JFrame frame;         // overall window frame
-    private JPanel panel;         // overall drawing surface
-    private Graphics g;           // graphics context for painting
-    private JLabel statusBar;     // status bar showing mouse position
+    private JFrame frame;                       // overall window frame
+    private JPanel panel;                       // overall drawing surface
+    private Graphics g;                         // graphics context for painting
+    private JLabel statusBar;                   // status bar showing mouse position
+    private int width,height, originalPixel;     // adding width and height to later clear
+    private BufferedImage image;                // image that gets drawn on the screen
+
 
     // constructs a drawing panel of given width and height enclosed in a window
     public DrawingPanel(int width, int height) {
+
+        // let the dims be known globally
+        this.width = width;
+        this.height = height;
+
         // set up the empty image onto which we will draw
-        BufferedImage image = new BufferedImage(width, height, TYPE_INT_ARGB);
+        image = new BufferedImage(width, height, TYPE_INT_ARGB);
         this.g = image.getGraphics();
         this.g.setColor(Color.BLACK);
         JLabel label = new JLabel();
@@ -55,7 +62,21 @@ public class DrawingPanel {
         TimerListener listener = new TimerListener();
         Timer timer = new Timer(DELAY, listener);
         timer.start();
+
+        // get the initial pixel value
+        originalPixel = image.getRGB(0, 0);
+
     }
+
+    // clears the entire panel
+    public void clear(){
+        int[] pixels = new int[width * height];
+        for (int i = 0; i < pixels.length; i++) {
+            pixels[i] = originalPixel;
+        }
+        image.setRGB(0, 0, width, height, pixels, 0, 1);
+    }
+
 
     // obtain the Graphics object to draw on the panel
     public Graphics getGraphics() {
@@ -84,12 +105,15 @@ public class DrawingPanel {
         this.frame.toFront();
     }
 
+
     // used for an internal timer that repeatedly repaints the screen
     class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             panel.repaint();
         }
     }
+
+
 
     // draws the status bar text when the mouse moves
     class StatusBarMouseAdapter extends MouseInputAdapter {
