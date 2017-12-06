@@ -1,19 +1,16 @@
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+
 
 public class Main {
     private static final int WIDTH = 600;
     private static final int HEIGHT = 400;
+    private static final int ORGANISM_SIZE_PX = 4;
     private static DrawingPanel drawingPanel = new DrawingPanel(WIDTH, HEIGHT);
     private static Graphics graphics = drawingPanel.getGraphics();
     private static Map<Coordinates2D<Integer>,Boolean> occupiedStatus = new HashMap<>();
-
 
     public static void main(String[] args) {
             generatePoints(300);
@@ -28,7 +25,7 @@ public class Main {
         for (int i = 0; i < numberOfPoints; i++) {
             int randX = randomNumberGenerator(0, WIDTH);
             int randY = randomNumberGenerator(0, HEIGHT);
-            graphics.fillRect(randX, randY, 4, 4);
+            graphics.fillRect(randX, randY, ORGANISM_SIZE_PX, ORGANISM_SIZE_PX);
             occupiedStatus.put(new Coordinates2D<>(randX,randY),true);
         }
 
@@ -45,12 +42,47 @@ public class Main {
      * @param y
      * @return
      */
-    public boolean checkIfFillable(int x, int y){
+    public boolean checkIfFillable(int x, int y, int pixelSize){
         int occupancyCounter = 0;
 
 
+        // Iterate through all the points and look out for the neighbours
+        for ( Coordinates2D e: occupiedStatus.keySet()) {
 
+            //Diagonal left neighbour (x-p,y+p)
+            if(new Coordinates2D<>(x-pixelSize,y+pixelSize).equals(e)){
+                occupancyCounter++;
+            }
+            //top neighbour (x,y+p)
+            else if(new Coordinates2D<>(x,y+pixelSize).equals(e)){
+                occupancyCounter++;
+            }
+            //top right neighbour (x+p,y+p)
+            else if(new Coordinates2D<>(x+pixelSize,y+pixelSize).equals(e)){
+                occupancyCounter++;
+            }
+            //right neighbour (x+p,y)
+            else if(new Coordinates2D<>(x+pixelSize,y).equals(e)){
+                occupancyCounter++;
+            }
+            //bottom right neighbour (x+p,y)
+            else if(new Coordinates2D<>(x+pixelSize,y-pixelSize).equals(e)){
+                occupancyCounter++;
+            }
+            //bottom neighbour (x,y-p)
+            else if(new Coordinates2D<>(x,y-pixelSize).equals(e)){
+                occupancyCounter++;
+            }
+            //bottom left neighbour (x-p,y-p)
+            else if(new Coordinates2D<>(x-pixelSize,y-pixelSize).equals(e)){
+                occupancyCounter++;
+            }
+            //left neighbour (x-p,y)
+            else if(new Coordinates2D<>(x-pixelSize,y).equals(e)){
+                occupancyCounter++;
+            }
 
+        }
 
 
 
