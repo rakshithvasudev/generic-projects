@@ -2,27 +2,29 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Main implements Runnable{
 
+    // used for choosing thread picking
+    private static int randomThreadNumber = 0;
 
 
 
     public static void main(String[] args) {
-//       Circle c = new Circle(45,45,10);
-//       for (int k =0;k<500;k++)
-//       {
-//           try {
-//               c.moveCircle(k,123);
-//               Thread.sleep(100);
-//           } catch (InterruptedException e) {
-//               e.printStackTrace();
-//           }
-//       }
+       Circle c = new Circle(45,45,10);
 
-       
+
+
+
+
     }
 
     @Override
     public void run() {
 
+        if(randomThreadNumber ==0){
+            
+
+        }
+
+      randomThreadNumber = randomNumberGenerator(1,4);
     }
 
 
