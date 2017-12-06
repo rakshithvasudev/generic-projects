@@ -1,14 +1,23 @@
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * This class supports the main execution of the program.
+ */
 public class Main implements Runnable {
 
     // used for choosing thread picking
     private static int randomThreadNumber = randomNumberGenerator(1, 4);
+
+    // the co-ordinate locations for starting the circle
     private static int xLoc = 300, yLoc = 200, radius = 10;
+
+    // the actual circle that undergoes motion
     private static volatile Circle c = new Circle(xLoc, yLoc, radius);
 
     public static void main(String[] args) {
+        //starting the newly created 4 threads.
         Main main = new Main();
+
         new Thread(main).start();
         new Thread(main).start();
         new Thread(main).start();
@@ -55,6 +64,7 @@ public class Main implements Runnable {
                     System.out.println("bottom thread, delay: " + delay + ": (" + c.getX() + ", " + c.getY() + ")");
                 }
 
+                // update the thread which does the motion
                 randomThreadNumber = randomNumberGenerator(1, 4);
 
             }
