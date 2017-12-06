@@ -4,11 +4,11 @@ public class Main implements Runnable{
 
     // used for choosing thread picking
     private static int randomThreadNumber = 0;
-
+    private Circle c = new Circle(45,45,10);
 
 
     public static void main(String[] args) {
-       Circle c = new Circle(45,45,10);
+
 
 
 
@@ -21,7 +21,7 @@ public class Main implements Runnable{
 
         // left moving thread
         if(randomThreadNumber == 1){
-            
+            c.moveCircleTo();
         }
 
         // right moving thread

@@ -9,7 +9,7 @@ public class Circle{
 
     private DrawingPanel drawingPanel;
     private Graphics graphics;
-    private int radius;
+    private int x, y,radius;
 
     /**
      * Constucts a circle on the drawing panel and initializes it.
@@ -18,6 +18,9 @@ public class Circle{
      * @param radius radius of the circle
      */
     public Circle(int x, int y, int radius){
+        // setup the circle properties
+        this.x = x;
+        this.y = y;
         this.radius=radius;
 
         // initialize the drawing panel with the dimensions.
@@ -45,10 +48,35 @@ public class Circle{
      * @param x new x co-ordinate of the location
      * @param y new y co-ordinate of the location
      */
-    public void moveCircle(int x, int y){
+    public void moveCircleTo(int x, int y){
+        // clean the panel.
         clearCircle();
+
+        // copy the co-ordinates globally.
+        this.x = x;
+        this.y = y;
+
+        // draw a new circle as specified.
         graphics.fillOval(x,y,radius,radius);
     }
 
+    /**
+     * Moves the circle by the specified pixels maintaining the
+     * same radius.
+     * @param x x pixels updating the co-ordinates
+     * @param y y pixels updating the co-ordinates
+     */
+    public void moveCircleBy(int x, int y){
+        // clean the panel.
+        clearCircle();
+
+        // update and copy the co-ordinates globally.
+        this.x += x;
+        this.y += y;
+
+        // draw a new circle as specified.
+        graphics.fillOval(this.x,this.y,radius,radius);
+
+    }
 
 }
