@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -12,6 +14,8 @@ public class Main {
     private static Graphics graphics = drawingPanel.getGraphics();
     private static List<Integer> randXPoints = new ArrayList<>();
     private static List<Integer> randYPoints = new ArrayList<>();
+    private static Map<Coordinates2D<Integer>,Boolean> occupiedStatus = new HashMap<>();
+
 
     public static void main(String[] args) {
             generatePoints(300);
@@ -29,16 +33,12 @@ public class Main {
             graphics.fillRect(randX, randY, 4, 4);
             randXPoints.add(randX);
             randYPoints.add(randY);
+            occupiedStatus.put(new Coordinates2D<>(randX,randY),true);
         }
 
-        // prints the zip (x,y) pairs using java 8 lamba functions
 
-        System.out.println(IntStream
-                .range(0,Math.min(randXPoints.size(),randYPoints.size()))
-                .mapToObj((i -> "("+randXPoints.get(i) + ", " + randYPoints.get(i) +")"))
-                .collect(Collectors.toList())
-        );
 
+        System.out.println(occupiedStatus);
     }
 
     /**
