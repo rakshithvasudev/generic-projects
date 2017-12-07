@@ -13,15 +13,24 @@ public class Main {
     private static Map<Coordinates2D<Integer>,Boolean> occupiedStatus = new HashMap<>();
 
     public static void main(String[] args) {
-            generatePoints(300);
+            generateFirstOrganisms(2000);
             System.out.println("Generated organisms");
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        generateNextGenOrganisms();
+    }
+
+    private static void generateNextGenOrganisms() {
     }
 
     public static int randomNumberGenerator(int min, int max) {
         return ThreadLocalRandom.current().nextInt(min, max + 1);
     }
 
-    public static void generatePoints(int numberOfPoints) {
+    public static void generateFirstOrganisms(int numberOfPoints) {
         for (int i = 0; i < numberOfPoints; i++) {
             int randX = randomNumberGenerator(0, WIDTH);
             int randY = randomNumberGenerator(0, HEIGHT);
@@ -83,8 +92,6 @@ public class Main {
             }
 
         }
-
-
 
         return (occupancyCounter == 3)||(occupancyCounter ==2);
     }
