@@ -10,35 +10,49 @@ public class Main {
     private static final int ORGANISM_SIZE_PX = 4;
     private static DrawingPanel drawingPanel = new DrawingPanel(WIDTH, HEIGHT);
     private static Graphics graphics = drawingPanel.getGraphics();
-    private static Map<Coordinates2D<Integer>,Boolean> occupiedStatus = new HashMap<>();
+    private static Map<Coordinates2D<Integer>,Boolean> firstGenOccupiedStatus = new HashMap<>();
+    private static Map<Coordinates2D<Integer>,Boolean> nextGenOccupiedStatus = new HashMap<>();
 
     public static void main(String[] args) {
-            generateFirstOrganisms(2000);
-            System.out.println("Generated organisms");
+            generateFirstOrganisms(200);
+            System.out.println("Generated First Generation organisms");
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        generateNextGenOrganisms();
+        generateNextGenOrganisms(200);
+        System.out.println(nextGenOccupiedStatus);
     }
 
-    private static void generateNextGenOrganisms() {
+    private static void generateNextGenOrganisms(int numberOfOrganisms) {
+        int acceptedOrganismsCount = 0;
+        while(true){
+            if(acceptedOrganismsCount >= numberOfOrganisms){
+                break;
+            }
+            int randX = randomNumberGenerator(0, WIDTH);
+            int randY = randomNumberGenerator(0, HEIGHT);
+            if(checkIfFillable(randX,randY,ORGANISM_SIZE_PX)){
+                nextGenOccupiedStatus.put(new Coordinates2D<>(randX,randY),true);
+                acceptedOrganismsCount++;
+            }
+        }
     }
 
     public static int randomNumberGenerator(int min, int max) {
         return ThreadLocalRandom.current().nextInt(min, max + 1);
     }
 
-    public static void generateFirstOrganisms(int numberOfPoints) {
-        for (int i = 0; i < numberOfPoints; i++) {
+    public static void generateFirstOrganisms(int numberOfOrganisms) {
+        for (int i = 0; i < numberOfOrganisms; i++) {
             int randX = randomNumberGenerator(0, WIDTH);
             int randY = randomNumberGenerator(0, HEIGHT);
             graphics.fillRect(randX, randY, ORGANISM_SIZE_PX, ORGANISM_SIZE_PX);
-            occupiedStatus.put(new Coordinates2D<>(randX,randY),true);
+            firstGenOccupiedStatus.put(new Coordinates2D<>(randX,randY),true);
         }
 
-        System.out.println(occupiedStatus);
+        System.out.println(firstGenOccupiedStatus);
     }
 
     /**
@@ -51,12 +65,12 @@ public class Main {
      * @param y
      * @return
      */
-    public boolean checkIfFillable(int x, int y, int pixelSize){
+    public static boolean checkIfFillable(int x, int y, int pixelSize){
         int occupancyCounter = 0;
 
 
         // Iterate through all the points and look out for the neighbours
-        for ( Coordinates2D e: occupiedStatus.keySet()) {
+        for ( Coordinates2D e: firstGenOccupiedStatus.keySet()) {
 
             //Diagonal left neighbour (x-p,y+p)
             if(new Coordinates2D<>(x-pixelSize,y+pixelSize).equals(e)){
