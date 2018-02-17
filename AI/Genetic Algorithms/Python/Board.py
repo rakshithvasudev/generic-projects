@@ -41,9 +41,12 @@ class SudokuBoard:
         # reshape to 1 X 9 to get a uniform representation
         reshaped_array = arr.reshape(1, BOARD_SIZE)
 
+        # convert to a regular list
+        reshaped_array = reshaped_array.flatten()
+
         # a map of number of elements in the reshaped array
         # example: {1:2,2:0,3:1,.......9:1}
-        count_values = Counter(reshaped_array)
+        count_values = Counter(tuple(reshaped_array))
 
         # penalize if not uniquely present & even missing
         # 2 forms of penalty:
@@ -63,6 +66,8 @@ class SudokuBoard:
         return self.board
 
 
+
+
 class Population:
     def __init__(self):
         self.population = []
@@ -73,3 +78,8 @@ class Population:
 
 if __name__ == '__main__':
     board = SudokuBoard()
+    fake_arr = np.array([[1, 2, 3],
+                         [4, 5, 5],
+                         [6, 7, 8]])
+
+    print(board.array_fitness_score(fake_arr))
