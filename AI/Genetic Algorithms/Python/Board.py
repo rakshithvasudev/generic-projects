@@ -58,7 +58,7 @@ class SudokuBoard:
                 penalty_scores += count_values[element] - 1
 
         # Penalize for required element missing
-        penalty_scores += len(Counter(self.unique_numbers_set) - count_values)
+        # penalty_scores += len(Counter(self.unique_numbers_set) - count_values)
 
         return perfect_score - penalty_scores
 
@@ -78,8 +78,8 @@ class Population:
 
 if __name__ == '__main__':
     board = SudokuBoard()
-    fake_arr = np.array([[1, 2, 3],
-                         [4, 5, 5],
-                         [6, 7, 8]])
+    fake_arr = np.array([[1, 1, 1],
+                         [1, 1, 1],
+                         [1, 1, 1]])
 
     print(board.array_fitness_score(fake_arr))
