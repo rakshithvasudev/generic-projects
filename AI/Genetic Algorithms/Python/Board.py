@@ -3,13 +3,13 @@ from collections import Counter
 # using numpy for easy array operations
 import numpy as np
 
+# define the size of the sudoku board
 BOARD_SIZE = 9
 
 
 class SudokuBoard:
-    def __init__(self):
-        self.board = None
-        self.generate_board()
+    def __init__(self, board_elements=None):
+        self.board = board_elements
         self.unique_numbers_set = set(np.arange(1, BOARD_SIZE + 1))
 
     def generate_board(self):
@@ -107,18 +107,17 @@ class SudokuBoard:
         # Penalize for required element missing
         # penalty_scores += len(Counter(self.unique_numbers_set) - count_values)
 
+        # fitness score is the remaining score from the perfect score
         return perfect_score - penalty_scores
 
     def get_board(self):
         return self.board
 
+    def __str__(self):
+        return self.board_fitness_score()
 
-class Population:
-    def __init__(self):
-        self.population = []
-
-    def sort_population(self):
-        sorted(self.population)
+    def __eq__(self, other):
+        return isinstance(other, SudokuBoard.__class__) and self.board == other.board
 
 
 if __name__ == '__main__':
@@ -164,7 +163,3 @@ if __name__ == '__main__':
 
     board.set_board(solution_arr3)
     print(board.board_fitness_score())
-
-    # print(board.get_board())
-    # print("============================")
-    # print(board.board_fitness_score())
