@@ -33,7 +33,7 @@ class SudokuBoard:
             fitness_score += self.array_fitness_score(col)
 
         # get all of 9 the 3 x 3 cells
-        # Hardcoding to select cells due to lack of time
+        # Hardcoded to select cells due to lack of time
 
         # 1st to 3rd col, 1st row to 3rd row
         cell_unit_1 = self.board[0:3, 0:3]
