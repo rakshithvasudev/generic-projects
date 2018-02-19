@@ -87,9 +87,7 @@ class Population:
                 self.mutated_population.append(board)
 
     def sort_mutated_population(self):
-        self.new_population = sorted(self.mutated_population, key=lambda x: x.board_fitness_score(), reverse=True)
+        self.mutated_population = sorted(self.mutated_population, key=lambda x: x.board_fitness_score(), reverse=True)
 
     def get_mutated_population(self):
         return self.mutated_population
-
-

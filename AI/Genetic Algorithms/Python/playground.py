@@ -3,7 +3,7 @@ from Board import SudokuBoard
 import time, numpy as np
 
 initial_time = time.time()
-pop = Population(100)
+pop = Population(100000)
 pop.initialize_populations()
 pop.sort_original_population()
 old_pop = pop.get_population()
