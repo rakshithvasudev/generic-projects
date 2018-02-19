@@ -3,12 +3,15 @@ import random
 
 from Board import SudokuBoard
 
+BOARD_SIZE = 9
+
 
 class Population:
-    def __init__(self, population_count=100):
+    def __init__(self, population_count=200):
         self.population = []
         self.population_count = population_count
         self.new_population = []
+        self.mutated_population = []
 
     def initialize_populations(self):
         """
@@ -30,7 +33,7 @@ class Population:
         self.breed(random.randint(1, 9), random.randint(1, 9))
 
     def breed(self, row_index=5, col_index=5):
-        if row_index > 9 or col_index > 9:
+        if row_index > BOARD_SIZE or col_index > BOARD_SIZE:
             raise ValueError("Indices can't be larger than board size")
 
         max_limit = len(self.population)
@@ -49,9 +52,9 @@ class Population:
         Performs crossover.
         :param chromosome1: parent 1
         :param chromosome2: parent 2
-        :param row_index:
-        :param col_index:
-        :return:
+        :param row_index: row index where parents needs to be cut off
+        :param col_index: col index where parents needs to be cut off
+        :return: crossover chromosomes
         """
 
         # here is where the cols and rows get swapped, thanks to numpy which makes this process
@@ -65,3 +68,28 @@ class Population:
 
     def get_new_population(self):
         return self.new_population
+
+    def mutate_new_population(self, probability=0.3):
+        """
+        Modifies the crossover elements based on the modification probability
+        :param probability: probability percentage of the board elements to be modified
+        :return: NONE
+        """
+
+        # check out how many elements to modify based on the mutation probability
+        elements_mutation_count = int(math.ceil(probability * BOARD_SIZE * BOARD_SIZE))
+
+        for board in self.new_population:
+            for inc in range(elements_mutation_count):
+                random_row_index = random.randint(0, BOARD_SIZE - 1)
+                random_col_index = random.randint(0, BOARD_SIZE - 1)
+                board.get_board()[random_row_index][random_col_index] = random.randint(1, BOARD_SIZE)
+                self.mutated_population.append(board)
+
+    def sort_mutated_population(self):
+        self.new_population = sorted(self.mutated_population, key=lambda x: x.board_fitness_score(), reverse=True)
+
+    def get_mutated_population(self):
+        return self.mutated_population
+
+
