@@ -1,9 +1,10 @@
 from Population import Population
 from Board import SudokuBoard
-import time, numpy as np
+import numpy as np
+import time
 
 initial_time = time.time()
-pop = Population(100000)
+pop = Population(10000000)
 pop.initialize_populations()
 pop.sort_original_population()
 old_pop = pop.get_population()
