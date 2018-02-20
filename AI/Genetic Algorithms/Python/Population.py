@@ -31,6 +31,7 @@ class Population:
 
     def set_population(self, outside_population):
         self.population = outside_population
+        self.population_count = len(outside_population)
 
     def generate_new_population(self):
         self.breed(random.randint(1, 9), random.randint(1, 9))
