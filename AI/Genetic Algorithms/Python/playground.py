@@ -3,8 +3,9 @@ from Board import SudokuBoard
 import numpy as np
 import time
 
+
 initial_time = time.time()
-pop = Population(10000000)
+pop = Population(200)
 pop.initialize_populations()
 pop.sort_original_population()
 old_pop = pop.get_population()
@@ -36,7 +37,7 @@ final_time = time.time()
 print("===================")
 print("Population count: " + str(len(new_pop)))
 print("Old population highest fitness score: " + str(old_pop[0].board_fitness_score()))
-print("New population highest fitness score: " + str(new_pop[0].board_fitness_score()))
+print("Crossover population highest fitness score: " + str(new_pop[0].board_fitness_score()))
 print("Mutated population highest fitness score: " + str(mut_pop[0].board_fitness_score()))
 print("===================")
 print("Time to execute: {} s".format(final_time - initial_time))
