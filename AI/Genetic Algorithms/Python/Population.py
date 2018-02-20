@@ -29,6 +29,9 @@ class Population:
     def get_population(self):
         return self.population
 
+    def set_population(self, outside_population):
+        self.population = outside_population
+
     def generate_new_population(self):
         self.breed(random.randint(1, 9), random.randint(1, 9))
 
