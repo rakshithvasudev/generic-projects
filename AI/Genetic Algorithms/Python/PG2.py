@@ -4,36 +4,39 @@ from PopulationC import initialize_population, generate_bred_population, mutate_
 import time
 
 time1 = time.time()
-saved_mutated_population = None
+saved_population = initialize_population(2000)
 generation_counter = 0
 
-while True:
-    if saved_mutated_population is None:
-        initial_population = initialize_population(2000)
-    else:
-        # print("Inside else, len(saved_mutated_population) = {}".format(len(saved_mutated_population)))
-        initial_population = saved_mutated_population
-    sorted_init_pop = sort_population(initial_population)
-    print("First init pop: {}, size = {}".format(sorted_init_pop[0].board_fitness_score(), len(sorted_init_pop)))
-    bred_population = generate_bred_population(initial_population)
-    sorted_bred_pop = sort_population(bred_population)
-    print("bred pop : {}, size = {}".format(sorted_bred_pop[0].board_fitness_score(), len(sorted_init_pop)))
-    mutated_pop = mutate_new_population(sorted_bred_pop)
-    mutated_pop = sort_population(mutated_pop)
 
-    saved_mutated_population = mutated_pop
-    print("mut pop : {}, size = {}".format(mutated_pop[0].board_fitness_score(), len(mutated_pop)))
-    print("Current gen: {}".format(generation_counter))
+def get_best_pop(init_pop, bred_pop, mutated_pop):
+    return bred_pop
 
-    if mutated_pop[0].board_fitness_score() > 200:
-        break
 
-    # kill 50% of population from the bottom
-    # total_count = len(saved_mutated_population)
-    # delete_count = math.floor((0.50 * total_count))
-    # remaining_index = total_count - delete_count
-    # saved_mutated_population = saved_mutated_population[0:remaining_index]
-    generation_counter += 1
-    print("============================================================")
-time2 = time.time()
-print("Execution took: {}s = {}m ".format(round((time2 - time1), 2), round((time2 - time1) / 60), 2))
+if __name__ == '__main__':
+
+    while True:
+
+        init_pop = sort_population(saved_population)
+        print("First init pop: {}, size = {}".format(init_pop[0].board_fitness_score(), len(init_pop)))
+        bred_pop = generate_bred_population(init_pop)
+        bred_pop = sort_population(bred_pop)
+        print("bred pop : {}, size = {}".format(bred_pop[0].board_fitness_score(), len(bred_pop)))
+        mutated_pop = mutate_new_population(bred_pop)
+        mutated_pop = sort_population(mutated_pop)
+        print("mut pop : {}, size = {}".format(mutated_pop[0].board_fitness_score(), len(mutated_pop)))
+        print("Current gen: {}".format(generation_counter))
+
+        if saved_population[0].board_fitness_score() > 240:
+            break
+
+        # kill 50% of population from the bottom
+        # total_count = len(saved_mutated_population)
+        # delete_count = math.floor((0.50 * total_count))
+        # remaining_index = total_count - delete_count
+        # saved_mutated_population = saved_mutated_population[0:remaining_index]
+
+        saved_population = bred_pop
+        generation_counter += 1
+        print("============================================================")
+    time2 = time.time()
+    print("Execution took: {}s = {}m ".format(round((time2 - time1), 2), round((time2 - time1) / 60), 2))
