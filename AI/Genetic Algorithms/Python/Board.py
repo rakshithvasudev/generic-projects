@@ -114,7 +114,7 @@ class SudokuBoard:
         return self.board
 
     def __str__(self):
-        return self.board_fitness_score()
+        return str(self.board_fitness_score())
 
     def __eq__(self, other):
         return isinstance(other, SudokuBoard.__class__) and self.board == other.board
