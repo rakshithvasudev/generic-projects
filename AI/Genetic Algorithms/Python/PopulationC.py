@@ -93,6 +93,6 @@ def mutate_new_population(mutable_population, probability=0.3):
             random_row_index = randint(0, BOARD_SIZE - 1)
             random_col_index = randint(0, BOARD_SIZE - 1)
             board.get_board()[random_row_index][random_col_index] = randint(1, BOARD_SIZE)
-            mutated_population.append(board)
+        mutated_population.append(board)
 
     return mutated_population
