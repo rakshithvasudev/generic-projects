@@ -1,3 +1,6 @@
+"""
+For HW3 CSC 512 - Rakshith
+"""
 from random import randint
 import math
 
@@ -88,6 +91,7 @@ def mutate_population(mutable_population, probability=0.3):
     # check out how many elements to modify based on the mutation probability
     elements_mutation_count = int(math.ceil(probability * BOARD_SIZE * BOARD_SIZE))
 
+    # mutate the board elements, based on the probability
     for board in mutable_population:
         for inc in range(elements_mutation_count):
             random_row_index = randint(0, BOARD_SIZE - 1)
