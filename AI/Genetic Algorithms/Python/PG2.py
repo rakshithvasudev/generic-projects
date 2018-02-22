@@ -1,7 +1,6 @@
-import math, copy
-
-from PopulationC import initialize_population, breed_population, mutate_population, sort_population
+import copy
 import time
+from Genetic_Assignment import initialize_population, breed_population, mutate_population, sort_population
 
 
 def get_best_pop(init_pop, bred_pop, mutated_pop):
@@ -34,10 +33,15 @@ if __name__ == '__main__':
         print("Mutated population fitness = {}, size = {}".format(mutated_population[0].board_fitness_score(),
                                                                   len(mutated_population)))
 
+        # get the best population with the highest fitness score.
         saved_population['saved_population'] = get_best_pop(starting_population, bred_population, mutated_population)
 
         if starting_population[0].board_fitness_score() > 200:
             break
+
+        generation_counter += 1
+        print("Current Generation : {}".format(generation_counter))
         print("===============================================")
+
     time2 = time.time()
     print("Execution took: {}s = {}m ".format(round((time2 - time1), 2), round((time2 - time1) / 60, 2)))
