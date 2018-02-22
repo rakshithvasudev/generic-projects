@@ -47,7 +47,7 @@ def crossover(chromosome1, chromosome2, row_index, col_index):
     return [chromosome1, chromosome2]
 
 
-def generate_bred_population(original_population):
+def breed_population(original_population):
     """
     Performs breeding and crossover over a population
     :param original_population: the parent population from which the cross over happens
@@ -75,7 +75,7 @@ def generate_bred_population(original_population):
     return bred_population
 
 
-def mutate_new_population(mutable_population, probability=0.3):
+def mutate_population(mutable_population, probability=0.3):
     """
     Modifies the crossover elements based on the modification probability.
     :param mutable_population: The actual population that needs to be mutated.
