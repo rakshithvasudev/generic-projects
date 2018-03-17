@@ -36,7 +36,7 @@ if __name__ == '__main__':
         # if there is no population then initialize, if already initialized
         # then then use the best of the population in the generation.
         if len(saved_population) == 0:
-            saved_population['saved_population'] = initialize_population(5000)
+            saved_population['saved_population'] = initialize_population(50000)
         else:
             starting_population = copy.deepcopy(saved_population['saved_population'])
         starting_population = sort_population(copy.deepcopy(saved_population['saved_population']))
