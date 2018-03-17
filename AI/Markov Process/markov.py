@@ -21,25 +21,25 @@ def categorized_outcome(char_content):
     lower_case = char_content.lower()
 
     vowels = "[aeiou]"
-    consonants = "[^aeiou^\s ^"+string.punctuation+"]"
+    consonants = "[^aeiou]"
     white_space = "[\s]"
-    punctuation = "["+string.punctuation+"]"
+    punctuation = "[" + string.punctuation + "\d" + "]"
 
+    decision = None
     if re.match(vowels, lower_case) is not None:
-        return 'V'
-    elif re.match(consonants, lower_case) is not None:
-        return 'C'
-    elif re.match(white_space, lower_case) is not None:
-        return 'W'
-    elif re.match(punctuation, lower_case) is not None:
-        return 'P'
+        decision = 'V'
+    if re.match(consonants, lower_case) is not None:
+        decision = 'C'
+    if re.match(white_space, lower_case) is not None:
+        decision = 'W'
+    if re.match(punctuation, lower_case) is not None:
+        decision = 'P'
+    return decision
 
 
 if __name__ == '__main__':
-    #file = open("dataset/bible.txt", "r").read()
 
-    file = "John’s tire was not 12 inches across anymore!"
-
+    file = open("dataset/bible.txt", "r").read()
     tokens = tokenize(file)
 
     converted_categories = []
