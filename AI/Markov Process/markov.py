@@ -1,4 +1,5 @@
-import re, string
+import re
+import string
 
 
 def tokenize(text_content):
@@ -37,6 +38,41 @@ def categorized_outcome(char_content):
     return decision
 
 
+def collect_words(sequence, order):
+    """
+    Collects the distribution of words in a Hashmap/Dictionary which later can
+    be used to analyze the distribution of probabilities.
+    :param sequence: Input sequence of words from the text corpus.
+    :param order: Describes the number of previous states the current outcome is dependent on.
+    :return: the dictionary of mappings counted based on the order of dependency count.
+    """
+    char_map = {}
+
+    for counter in range(order, len(sequence) - order + 1):
+        current_char = sequence[counter]
+        previous_chars = []
+
+        for in_counter in range(counter+1 - order, counter+1):
+            previous_chars.append(sequence[in_counter - 1])
+        if current_char not in char_map:
+            char_map[current_char] = previous_chars
+        else:
+            char_map[current_char] += previous_chars
+        counter += order
+    return char_map
+
+
+def check_morkov(sequence, order):
+    """
+    Checks if the given input is a first order markov model using the rule
+    P(Xi|Xi-1, Xi-2) = P(Xi|Xi-1)?
+    :param sequence: input characters to check
+    :return: True if they satisfies the rule.
+    """
+
+    first_order_map = collect_words(sequence, 1)
+
+
 if __name__ == '__main__':
 
     file = open("dataset/bible.txt", "r").read()
@@ -48,4 +84,9 @@ if __name__ == '__main__':
         category = categorized_outcome(char)
         converted_categories.append(category)
 
-    print("".join(converted_categories))
+    corpus1 = "".join(converted_categories)
+    # print(corpus1)
+
+    print("order 1 : {}".format(len(collect_words(corpus1, 1))))
+    print("\n")
+    print("order 2 : {}".format(len(collect_words(corpus1, 2))))
