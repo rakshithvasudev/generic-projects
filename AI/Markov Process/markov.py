@@ -109,6 +109,9 @@ def convert_to_probabilities(map_with_chars):
     serves as the transition probabilities.
     :param map_with_chars: input map which contains words.
     :return: map with transition probabilities sorted in alphabetical order.
+    example : {'C': [0.3013, 0.001, 0.4185, 0.2791], 'V': [0.7081, 0.0, 0.1043, 0.1875],
+    'W': [0.5413, 0.1823, 0.2447, 0.0317], 'P': [0.3898, 0.3984, 0.0915, 0.1203]}
+    where the values inside the list are representatives of \CPVW\ probabilities
     """
     sorted_map = sort_char_map(map_with_chars)
     unpacked_sorted_map = unpack_sorted_map(sorted_map)
@@ -121,7 +124,7 @@ def convert_to_probabilities(map_with_chars):
         probabilities = []
 
         for element in unpacked_sorted_map[key]:
-            probabilities.append(element / total)
+            probabilities.append(round(element / total, 4))
 
         probabilites_map[key] = probabilities
 
