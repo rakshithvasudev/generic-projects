@@ -48,18 +48,24 @@ def collect_words(sequence, order):
     """
     char_map = {}
 
+    # iterate through the sequence(as long as the characters support the ordering)
     for counter in range(order, len(sequence) - order + 1):
 
         current_char = sequence[counter]
+
+        # create an empty list to add all the characters that occurred previously
+        # from the current character based on the order
         previous_chars = []
 
         for in_counter in range(counter+1 - order, counter+1):
             previous_chars.append(sequence[in_counter - 1])
+
         if current_char not in char_map:
             char_map[current_char] = previous_chars
         else:
             char_map[current_char] += previous_chars
 
+        # proceed counting in accordance the order.
         counter += order
     return char_map
 
@@ -89,13 +95,7 @@ if __name__ == '__main__':
     corpus1 = "".join(converted_categories)
     print(len(corpus1))
 
-    print("order 1C : {}".format(len(collect_words(corpus1, 1)['C'])))
-    print("\n")
-    print("order 1V : {}".format(len(collect_words(corpus1, 1)['V'])))
-    print("\n")
-    print("order 1W : {}".format(len(collect_words(corpus1, 1)['W'])))
-    print("\n")
-    print("order 1P : {}".format(len(collect_words(corpus1, 1)['P'])))
+    print("order 1C : {}".format(len(collect_words(corpus1, 1))))
     print("\n")
 
     # print("order 2 : {}".format(len(collect_words(corpus1, 2)['C'])))
