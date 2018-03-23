@@ -1,6 +1,6 @@
 import re
 import string
-
+from collections import Counter
 
 def tokenize(text_content):
     """
@@ -57,7 +57,7 @@ def collect_words(sequence, order):
         # from the current character based on the order
         previous_chars = []
 
-        for in_counter in range(counter+1 - order, counter+1):
+        for in_counter in range(counter + 1 - order, counter + 1):
             previous_chars.append(sequence[in_counter - 1])
 
         if current_char not in char_map:
@@ -70,7 +70,20 @@ def collect_words(sequence, order):
     return char_map
 
 
-def check_morkov(sequence, order):
+def convert_to_probabilities(map_with_words):
+    """
+    Converts the given character map to probabilities of occurrences, which
+    serves as the transition probabilities.
+    :param map_with_words: input map which contains words.
+    :return: map with transition probabilities sorted in alphabetical order.
+    """
+    probabilty_map = {}
+
+    for key in map_with_words.keys():
+        probabilty_map[key] = sorted(Counter(map_with_words[key]).items())
+
+    return probabilty_map
+def check_morkov(sequence):
     """
     Checks if the given input is a first order markov model using the rule
     P(Xi|Xi-1, Xi-2) = P(Xi|Xi-1)?
@@ -79,12 +92,16 @@ def check_morkov(sequence, order):
     """
 
     first_order_map = collect_words(sequence, 1)
+    #second_order_map = collect_words(sequence, 2)
 
+    first_order_map = convert_to_probabilities(first_order_map)
+    #second_order_map = convert_to_probabilities(second_order_map)
 
+    print(first_order_map)
 if __name__ == '__main__':
 
-    file = open("dataset/bible.txt", "r").read()
-    tokens = tokenize(file)
+    file1 = open("dataset/bible.txt", "r").read()
+    tokens = tokenize(file1)
 
     converted_categories = []
 
@@ -93,9 +110,5 @@ if __name__ == '__main__':
         converted_categories.append(category)
 
     corpus1 = "".join(converted_categories)
-    print(len(corpus1))
 
-    print("order 1C : {}".format(len(collect_words(corpus1, 1))))
-    print("\n")
-
-    # print("order 2 : {}".format(len(collect_words(corpus1, 2)['C'])))
+    check_morkov(corpus1)
