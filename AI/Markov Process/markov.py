@@ -49,6 +49,7 @@ def collect_words(sequence, order):
     char_map = {}
 
     for counter in range(order, len(sequence) - order + 1):
+
         current_char = sequence[counter]
         previous_chars = []
 
@@ -58,6 +59,7 @@ def collect_words(sequence, order):
             char_map[current_char] = previous_chars
         else:
             char_map[current_char] += previous_chars
+
         counter += order
     return char_map
 
@@ -85,8 +87,15 @@ if __name__ == '__main__':
         converted_categories.append(category)
 
     corpus1 = "".join(converted_categories)
-    # print(corpus1)
+    print(len(corpus1))
 
-    print("order 1 : {}".format(len(collect_words(corpus1, 1))))
+    print("order 1C : {}".format(len(collect_words(corpus1, 1)['C'])))
     print("\n")
-    print("order 2 : {}".format(len(collect_words(corpus1, 2))))
+    print("order 1V : {}".format(len(collect_words(corpus1, 1)['V'])))
+    print("\n")
+    print("order 1W : {}".format(len(collect_words(corpus1, 1)['W'])))
+    print("\n")
+    print("order 1P : {}".format(len(collect_words(corpus1, 1)['P'])))
+    print("\n")
+
+    # print("order 2 : {}".format(len(collect_words(corpus1, 2)['C'])))
