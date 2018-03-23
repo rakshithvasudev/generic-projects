@@ -42,7 +42,9 @@ def categorized_outcome(char_content):
 def collect_words(sequence, order):
     """
     Collects the distribution of words in a Hashmap/Dictionary which later can
-    be used to analyze the distribution of probabilities.
+    be used to analyze the distribution of probabilities. This is ideally where
+    Markov's chain is implemented, in that the previous characters are considered to be accounted.
+
     :param sequence: Input sequence of words from the text corpus.
     :param order: Describes the number of previous states the current outcome is dependent on.
     :return: the dictionary of mappings counted based on the order of dependency count.
@@ -115,7 +117,7 @@ def convert_to_probabilities(map_with_chars):
     """
     sorted_map = sort_char_map(map_with_chars)
     unpacked_sorted_map = unpack_sorted_map(sorted_map)
-    probabilites_map = {}
+    probabilities_map = {}
 
     # convert into normalized probabilities
     for key in unpacked_sorted_map.keys():
@@ -126,12 +128,12 @@ def convert_to_probabilities(map_with_chars):
         for element in unpacked_sorted_map[key]:
             probabilities.append(round(element / total, 4))
 
-        probabilites_map[key] = probabilities
+        probabilities_map[key] = probabilities
 
-    return probabilites_map
+    return probabilities_map
 
 
-def check_morkov(sequence):
+def check_markov(sequence):
     """
     Checks if the given input is a first order markov model using the rule
     P(Xi|Xi-1, Xi-2) = P(Xi|Xi-1)?
@@ -139,13 +141,24 @@ def check_morkov(sequence):
     :return: True if they satisfies the rule.
     """
 
+    # get the first and second order transition probabilities.
     first_order_map = collect_words(sequence, 1)
-    # second_order_map = collect_words(sequence, 2)
-
+    second_order_map = collect_words(sequence, 2)
     first_order_map = convert_to_probabilities(first_order_map)
-    # second_order_map = convert_to_probabilities(second_order_map)
+    second_order_map = convert_to_probabilities(second_order_map)
 
+    print("\n")
+    print("--------Transition probabilities are as follows: First and Second Respectively: ---------")
+    print("\n")
     print(first_order_map)
+    print(second_order_map)
+
+    # compare the maps.
+    for key in first_order_map.keys():
+        if len(set(first_order_map[key]) & set(second_order_map[key])) != 4:
+            return False
+
+    return True
 
 
 if __name__ == '__main__':
@@ -161,4 +174,10 @@ if __name__ == '__main__':
 
     corpus1 = "".join(converted_categories)
 
-    check_morkov(corpus1)
+    print("\n")
+    if not check_markov(corpus1):
+        print("The given rule that P(Xi|Xi-1, Xi-2) = P(Xi|Xi-1) is not satisfied for the corpus: {}".format("Bible.txt"))
+    else:
+        print("The given rule that P(Xi|Xi-1, Xi-2) = P(Xi|Xi-1) is  satisfied for the corpus: {}".format("Bible.txt"))
+    print("\n")
+print("-----------------------------------------------------------------------------------------")
