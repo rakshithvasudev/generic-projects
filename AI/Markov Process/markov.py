@@ -2,6 +2,7 @@ import re
 import string
 from collections import Counter
 
+
 def tokenize(text_content):
     """
     Converts an entire text corpus into tokens of characters
@@ -70,19 +71,63 @@ def collect_words(sequence, order):
     return char_map
 
 
-def convert_to_probabilities(map_with_words):
+def sort_char_map(map_of_chars):
+    """
+    Sorts the counts of characters.
+    :param map_of_chars: map to be sorted.
+    :return: sorted version of input based on the items.
+    """
+    sorted_map = {}
+
+    # sort the counts
+    for key in map_of_chars.keys():
+        sorted_map[key] = sorted(Counter(map_of_chars[key]).items())
+    return sorted_map
+
+
+def unpack_sorted_map(sorted_map):
+    """
+    Unpacks the sorted tuple
+    :param sorted_map: map whose tuple keys need to be removed.
+    :return: plain map with just keys and sorted values according to counts of [c,p,v,w]
+    """
+    unpacked_sorted_map = {}
+
+    # unpack the tuple formed by sort and assign plain values
+    for key in sorted_map.keys():
+        counts = []
+        for tuple_counter in range(len(sorted_map[key])):
+            counts.append(sorted_map[key][tuple_counter][1])
+        unpacked_sorted_map[key] = counts
+
+    return unpacked_sorted_map
+
+
+def convert_to_probabilities(map_with_chars):
     """
     Converts the given character map to probabilities of occurrences, which
     serves as the transition probabilities.
-    :param map_with_words: input map which contains words.
+    :param map_with_chars: input map which contains words.
     :return: map with transition probabilities sorted in alphabetical order.
     """
-    probabilty_map = {}
+    sorted_map = sort_char_map(map_with_chars)
+    unpacked_sorted_map = unpack_sorted_map(sorted_map)
+    probabilites_map = {}
 
-    for key in map_with_words.keys():
-        probabilty_map[key] = sorted(Counter(map_with_words[key]).items())
+    # convert into normalized probabilities
+    for key in unpacked_sorted_map.keys():
 
-    return probabilty_map
+        total = sum(unpacked_sorted_map[key])
+        probabilities = []
+
+        for element in unpacked_sorted_map[key]:
+            probabilities.append(element / total)
+
+        probabilites_map[key] = probabilities
+
+    return probabilites_map
+
+
 def check_morkov(sequence):
     """
     Checks if the given input is a first order markov model using the rule
@@ -92,12 +137,14 @@ def check_morkov(sequence):
     """
 
     first_order_map = collect_words(sequence, 1)
-    #second_order_map = collect_words(sequence, 2)
+    # second_order_map = collect_words(sequence, 2)
 
     first_order_map = convert_to_probabilities(first_order_map)
-    #second_order_map = convert_to_probabilities(second_order_map)
+    # second_order_map = convert_to_probabilities(second_order_map)
 
     print(first_order_map)
+
+
 if __name__ == '__main__':
 
     file1 = open("dataset/bible.txt", "r").read()
