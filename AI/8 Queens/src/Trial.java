@@ -1,6 +1,4 @@
-/**
- * Created by Rakshith on 5/12/2018.
- */
+
 public class Trial {
 
 
