@@ -164,9 +164,12 @@ def check_markov(sequence):
 if __name__ == '__main__':
 
     file1 = open("dataset/bible.txt", "r").read()
+    file2 = open("dataset/alice.txt", "r").read()
     tokens = tokenize(file1)
+    tokens2 = tokenize(file2)
 
     converted_categories = []
+    converted_categories2 = []
 
     for char in tokens:
         category = categorized_outcome(char)
@@ -174,10 +177,28 @@ if __name__ == '__main__':
 
     corpus1 = "".join(converted_categories)
 
+    for char in tokens2:
+        category = categorized_outcome(char)
+        converted_categories.append(category)
+
+    corpus2 = "".join(converted_categories)
+
     print("\n")
     if not check_markov(corpus1):
-        print("The given rule that P(Xi|Xi-1, Xi-2) = P(Xi|Xi-1) is not satisfied for the corpus: {}".format("Bible.txt"))
+        print("The given rule that P(Xi|Xi-1, Xi-2) = P(Xi|Xi-1) is not satisfied for the corpus: {}, "
+              "therefore the input is a first order Markov sequence.".format("Bible.txt"))
     else:
-        print("The given rule that P(Xi|Xi-1, Xi-2) = P(Xi|Xi-1) is  satisfied for the corpus: {}".format("Bible.txt"))
+        print("The given rule that P(Xi|Xi-1, Xi-2) = P(Xi|Xi-1) is  satisfied for the corpus: {}"
+              "therefore the input is not a first order Markov sequence.".format("Bible.txt"))
+    print("\n")
+    print("-----------------------------------------------------------------------------------------")
+
+    print("\n")
+    if not check_markov(corpus2):
+        print("The given rule that P(Xi|Xi-1, Xi-2) = P(Xi|Xi-1) is not satisfied for the corpus: {}, "
+              "therefore the input is a first order Markov sequence.".format("Alice.txt"))
+    else:
+        print("The given rule that P(Xi|Xi-1, Xi-2) = P(Xi|Xi-1) is  satisfied for the corpus: {}"
+              "therefore the input is not a first order Markov sequence.".format("Bible.txt"))
     print("\n")
 print("-----------------------------------------------------------------------------------------")
