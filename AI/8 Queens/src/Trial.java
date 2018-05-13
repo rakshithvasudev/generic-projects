@@ -7,5 +7,7 @@ public class Trial {
         queensGA.generateStartingPopulation(10000);
 
         System.out.println(queensGA.startingPopulation);
+        System.out.println(queensGA.calcFitnessFunction("12345123"));
+
     }
 }

@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 
@@ -48,14 +46,28 @@ public class EightQueensGA {
         }
     }
 
-    // There are  28 clashes possible in an 8 x 8 chessboard.
-    // Thus there are 28 pairs of different queens,
-    // smaller column first, all together,
-    // so solutions have fitness 28.
-//    public int calcFitnessFunction(String solution){
-//
-//
-//    }
+    public int countUniquecharacters(String actualString){
+        Set<Character> stringSet = new HashSet<>();
+
+        for (char c:actualString.toCharArray()){
+            stringSet.add(c);
+        }
+        return stringSet.size();
+    }
+
+    //The ideal case can yield upto 28 arrangements
+    // of non attacking pairs in an 8 x 8 chessboard
+    // Therefore max fitness = 28.
+    public int calcFitnessFunction(String solution){
+
+        // to calculate row and column clashes
+        // subtract the total length of the sample
+        // from the length of unique number of elements
+        // of the sample.
+        int uniqueElements = countUniquecharacters(solution);
+        int rcClashes = solution.length()- uniqueElements;
+        return rcClashes;
+    }
 }
 
 
