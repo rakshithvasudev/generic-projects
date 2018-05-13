@@ -19,8 +19,8 @@
       <file leaf-file-name="Trial.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Trial.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="424">
+              <caret line="8" column="56" lean-forward="false" selection-start-line="8" selection-start-column="56" selection-end-line="8" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -30,7 +30,7 @@
         <entry file="file://$PROJECT_DIR$/src/EightQueensGA.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="53">
-              <caret line="26" column="26" lean-forward="true" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="26" />
+              <caret line="32" column="46" lean-forward="true" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -576,12 +576,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1526165698942</updated>
-      <workItem from="1526165702362" duration="6413000" />
+      <workItem from="1526165702362" duration="6784000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6413000" />
+    <option name="totallyTimeSpent" value="6784000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-12" y="0" width="3854" height="2082" extended-state="0" />
@@ -636,8 +636,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/Trial.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="424">
+          <caret line="8" column="56" lean-forward="false" selection-start-line="8" selection-start-column="56" selection-end-line="8" selection-end-column="56" />
           <folding />
         </state>
       </provider>
@@ -645,7 +645,7 @@
     <entry file="file://$PROJECT_DIR$/src/EightQueensGA.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="53">
-          <caret line="26" column="26" lean-forward="true" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="26" />
+          <caret line="32" column="46" lean-forward="true" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

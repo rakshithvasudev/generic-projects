@@ -20,7 +20,7 @@ public class EightQueensGA {
     public List<String> mutatedPopulation = new ArrayList<>();
 
 
-
+    // produces required number of populations
     public void generateStartingPopulation(int populationSize){
 
         // generate random populations of size - populationSize
@@ -33,7 +33,8 @@ public class EightQueensGA {
                    // generate a random number
                    int randomColumn = ThreadLocalRandom.current().nextInt(1, 8 + 1);
 
-                   // if the generated random number not there then append it
+                   // if the generated random number not there
+                   // in randomPopulation, then append it
                    if (randomPopulation.indexOf(String.valueOf(randomColumn))==-1)
                        randomPopulation.append(randomColumn);
 
@@ -41,6 +42,8 @@ public class EightQueensGA {
                    if (randomPopulation.length()==8)
                     break;
                }
+
+            // add it to the main population set
             startingPopulation.add(randomPopulation.toString());
         }
     }
