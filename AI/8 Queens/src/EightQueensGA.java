@@ -118,13 +118,19 @@ public class EightQueensGA {
     }
 
 
+    // list to be crossed over is given - sorted population
     public void performCrossOver(List<String> population){
+        int evenLength = population.size();
+        if (evenLength%2!=0)
+            evenLength =-1;
 
-
-
-
+        for (int i = 0; i<evenLength-1;i++){
+            String chromosome1 = population.get(i);
+            String chromosome2 = population.get(i+1);
+            String result = crossOver(chromosome1,chromosome2);
+            crossedPopulation.add(result);
+        }
     }
-
 }
 
 
