@@ -71,6 +71,7 @@ public class EightQueensGA {
         int diagonalClashes = 0;
 
         // count the number of diagonal clashes
+        // https://stackoverflow.com/questions/3209165/need-help-with-n-queens-program-checking-diagonals
         for (int i = 0; i < solution.length(); i++) {
             for (int j = 0; j < solution.length(); j++) {
                 if (i != j) {
