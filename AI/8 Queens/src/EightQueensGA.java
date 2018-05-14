@@ -18,38 +18,42 @@ public class EightQueensGA {
     public List<String> mutatedPopulation = new ArrayList<>();
 
 
+
+
     // produces required number of populations
-    public void generateStartingPopulation(int populationSize){
+    public void generateStartingPopulation(int populationSize) {
 
         // generate random populations of size - populationSize
-        for (int i=0;i<populationSize;i++){
+        for (int i = 0; i < populationSize; i++) {
 
             // generate a solution such that no 2 numbers repeat
             StringBuilder randomPopulation = new StringBuilder();
 
-               while (true){
-                   // generate a random number
-                   int randomColumn = ThreadLocalRandom.current().nextInt(1, 8 + 1);
+            while (true) {
+                // generate a random number
+                int randomColumn = ThreadLocalRandom.current().nextInt(1, 8 + 1);
 
-                   // if the generated random number not there
-                   // in randomPopulation, then append it
-                   if (randomPopulation.indexOf(String.valueOf(randomColumn))==-1)
-                       randomPopulation.append(randomColumn);
+                // if the generated random number not there
+                // in randomPopulation, then append it
+                if (randomPopulation.indexOf(String.valueOf(randomColumn)) == -1)
+                    randomPopulation.append(randomColumn);
 
-                   // end generating random numbers when it reaches 8 digits
-                   if (randomPopulation.length()==8)
+                // end generating random numbers when it reaches 8 digits
+                if (randomPopulation.length() >= 8)
                     break;
-               }
+            }
 
             // add it to the main population set
             startingPopulation.add(randomPopulation.toString());
         }
     }
 
-    public int countUniquecharacters(String actualString){
+    // counts the unique number of characters for a given
+    // character sequence.
+    public int countUniqueCharacters(String actualString) {
         Set<Character> stringSet = new HashSet<>();
 
-        for (char c:actualString.toCharArray()){
+        for (char c : actualString.toCharArray()) {
             stringSet.add(c);
         }
         return stringSet.size();
@@ -58,16 +62,69 @@ public class EightQueensGA {
     //The ideal case can yield upto 28 arrangements
     // of non attacking pairs in an 8 x 8 chessboard
     // Therefore max fitness = 28.
-    public int calcFitnessFunction(String solution){
+    public int calcFitnessScore(String solution) {
 
         // to calculate row and column clashes
         // subtract the total length of the sample
         // from the length of unique number of elements
         // of the sample.
-        int uniqueElements = countUniquecharacters(solution);
-        int rcClashes = solution.length()- uniqueElements;
-        return rcClashes;
+        int uniqueElements = countUniqueCharacters(solution);
+        int rcClashes = Math.abs(solution.length() - uniqueElements);
+        int diagonalClashes = 0;
+
+        // count the number of diagonal clashes
+        for (int i = 0; i < solution.length(); i++) {
+            for (int j = 0; j < solution.length(); j++) {
+                if (i != j) {
+
+                    int dx = Math.abs(i - j);
+                    int dy = Math.abs((int) solution.charAt(i) - (int) solution.charAt(j));
+
+                    if (dx == dy) {
+                        diagonalClashes += 1;
+                    }
+                }
+            }
+        }
+        return 28 - rcClashes - diagonalClashes;
     }
+
+    // sorts a list on fitness score - descending order
+    public void sortOnFitness(List<String> population){
+        Collections.sort(population, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                 return calcFitnessScore(o2)-calcFitnessScore(o1);
+            }
+        });
+    }
+
+
+    // randomly cross 2 chromosomes and return
+    public String crossOver(String chromosome1, String chromosome2){
+        float crossOverProbability = (float) (ThreadLocalRandom.current().
+                nextInt(1, 8 + 1)*0.1);
+
+        int length1 = (int) Math.ceil(crossOverProbability*chromosome1.length());
+
+        StringBuilder result = new StringBuilder();
+        for (int i=0;i<length1;i++)
+            result.append(chromosome1.charAt(i));
+
+        for (int j = length1;j<8;j++)
+            result.append(chromosome2.charAt(j));
+
+        return result.toString().substring(0,8);
+    }
+
+
+    public void performCrossOver(List<String> population){
+
+
+
+
+    }
+
 }
 
 
