@@ -1,5 +1,8 @@
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Markov {
 
@@ -29,11 +32,24 @@ public class Markov {
         return 'P';
     }
 
-
+    // reads the text from the specified filename and
+    // returns the read content
     public String readText(String fileName){
-        
-
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(new FileReader(fileName));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        StringBuilder content = new StringBuilder();
+        while (scanner.hasNext()){
+            content.append(scanner.next());
+        }
+        return content.toString();
     }
+
+    
+
 
 
 }
