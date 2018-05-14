@@ -1,0 +1,15 @@
+import java.util.List;
+
+public class Action {
+
+    public static void main(String[] args) {
+        String sample = "John's tire was not 12 inches across anymore!";
+
+        Markov mvp = new Markov();
+        List<Character> lists = mvp.convertToGroups(sample);
+
+        System.out.println(lists.toString());
+        System.out.println(sample.length());
+    }
+
+}
