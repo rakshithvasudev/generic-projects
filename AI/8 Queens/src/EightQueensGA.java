@@ -131,6 +131,23 @@ public class EightQueensGA {
             crossedPopulation.add(result);
         }
     }
-}
+
+
+    // list to be crossed over is given - crossed population
+    public void performMutation(List<String> population){
+
+        for (String solution : population) {
+
+
+                int randomValue = ThreadLocalRandom.current().nextInt(1, 7);
+
+
+                solution = solution.replace(solution.charAt(randomValue),
+                        Character.forDigit(randomValue,10));
+
+                mutatedPopulation.add(solution);
+            }
+        }
+    }
 
 
