@@ -1,0 +1,15 @@
+Starting Population Max Fitness Score: 26
+Crossed Population Max Fitness Score: 24
+Mutated Population: Max Fitness Score: 25
+-----
+Starting Population Max Fitness Score: 26
+Crossed Population Max Fitness Score: 24
+Mutated Population: Max Fitness Score: 25
+Generation count: 2
+-----
+Starting Population Max Fitness Score: 26
+Crossed Population Max Fitness Score: 28
+Mutated Population: Max Fitness Score: 25
+solution: 68241753 at generation count: 2
+
+Process finished with exit code 0

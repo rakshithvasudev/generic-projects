@@ -18,8 +18,6 @@ public class EightQueensGA {
     public List<String> mutatedPopulation = new ArrayList<>();
 
 
-
-
     // produces required number of populations
     public void generateStartingPopulation(int populationSize) {
 
@@ -94,7 +92,7 @@ public class EightQueensGA {
         Collections.sort(population, new Comparator<String>() {
             @Override
             public int compare(String o1, String o2) {
-                 return calcFitnessScore(o2)-calcFitnessScore(o1);
+                return calcFitnessScore(o2)-calcFitnessScore(o1);
             }
         });
     }
@@ -120,6 +118,7 @@ public class EightQueensGA {
 
     // list to be crossed over is given - sorted population
     public void performCrossOver(List<String> population){
+        crossedPopulation = new ArrayList<>();
         int evenLength = population.size();
         if (evenLength%2!=0)
             evenLength =-1;
@@ -128,6 +127,7 @@ public class EightQueensGA {
             String chromosome1 = population.get(i);
             String chromosome2 = population.get(i+1);
             String result = crossOver(chromosome1,chromosome2);
+
             crossedPopulation.add(result);
         }
     }
@@ -136,12 +136,12 @@ public class EightQueensGA {
     // list to be crossed over is given - crossed population
     public void performMutation(List<String> population){
         for (String solution : population) {
-                int randomValue1 = ThreadLocalRandom.current().nextInt(1, 7);
-                solution = solution.replace(solution.charAt(randomValue1),
-                        Character.forDigit(randomValue1,10));
-                mutatedPopulation.add(solution);
-            }
+            int randomValue1 = ThreadLocalRandom.current().nextInt(1, 7);
+            solution = solution.replace(solution.charAt(randomValue1),
+                    Character.forDigit(randomValue1,10));
+            mutatedPopulation.add(solution);
         }
     }
+}
 
 
