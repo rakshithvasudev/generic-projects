@@ -128,7 +128,6 @@ public class EightQueensGA {
             String chromosome1 = population.get(i);
             String chromosome2 = population.get(i+1);
             String result = crossOver(chromosome1,chromosome2);
-            crossedPopulation.clear();
             crossedPopulation.add(result);
         }
     }
@@ -137,10 +136,9 @@ public class EightQueensGA {
     // list to be crossed over is given - crossed population
     public void performMutation(List<String> population){
         for (String solution : population) {
-                int randomValue = ThreadLocalRandom.current().nextInt(1, 7);
-                solution = solution.replace(solution.charAt(randomValue),
-                        Character.forDigit(randomValue,10));
-                mutatedPopulation.clear();
+                int randomValue1 = ThreadLocalRandom.current().nextInt(1, 7);
+                solution = solution.replace(solution.charAt(randomValue1),
+                        Character.forDigit(randomValue1,10));
                 mutatedPopulation.add(solution);
             }
         }

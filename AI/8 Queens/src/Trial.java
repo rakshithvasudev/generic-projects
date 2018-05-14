@@ -25,30 +25,15 @@ public class Trial {
 
         // if solution not found then keep searching
         while (true){
-            int maxFitnessScore =0;
-            int maxFitnessPopulation = 0;
 
             System.out.println("-----");
             System.out.println("Starting Population: "+queensGA.startingPopulation);
             queensGA.sortOnFitness(queensGA.startingPopulation);
             System.out.println("Sorted Population: "+queensGA.startingPopulation);
-
-
-            if (queensGA.calcFitnessScore(queensGA.startingPopulation.get(0))>maxFitnessScore){
-                maxFitnessScore = queensGA.calcFitnessScore(queensGA.startingPopulation.get(0));
-                maxFitnessPopulation = 1;
-            }
-
             queensGA.performCrossOver(queensGA.startingPopulation);
             System.out.println("Crossed Population: "+queensGA.crossedPopulation);
-
-            
             queensGA.performMutation(queensGA.crossedPopulation);
             System.out.println("Mutated Population: "+queensGA.mutatedPopulation);
-
-
-            if ()
-            queensGA.startingPopulation = new ArrayList<>(queensGA.mutatedPopulation);
 
 
             if ((queensGA.calcFitnessScore(queensGA.startingPopulation.get(0)))==28){
@@ -58,6 +43,8 @@ public class Trial {
             }
 
             generationCount++;
+
+            System.out.println("Generation count: "+ generationCount);
         }
     }
 }
