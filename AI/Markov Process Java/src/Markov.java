@@ -118,41 +118,39 @@ public class Markov {
             String currentChar = groupedSequence.substring(i-1,i+1);
             String nextChar = groupedSequence.substring(i+1,i+2);
 
-            System.out.println(currentChar+"-"+nextChar);
-
-
-            if (currentChar.equals("VV") && nextChar.equals("V"))
-                firstTransitionMatrix[0][0]+=1;
-            else if(currentChar.equals("VC") && nextChar.equals("C"))
-                firstTransitionMatrix[0][1]+=1;
-            else if (currentChar.equals("VW") && nextChar.equals("W"))
-                firstTransitionMatrix[0][2]+=1;
-            else if (currentChar.equals("VP") && nextChar.equals("P"))
-                 firstTransitionMatrix[0][3]+=1;
-            else if (currentChar.equals("CV") && nextChar.equals("V"))
-                firstTransitionMatrix[1][0]+=1;
-            else if (currentChar.equals("CC") && nextChar.equals("C"))
-                firstTransitionMatrix[1][1]+=1;
-            else if (currentChar.equals("CW") && nextChar.equals("W"))
-                firstTransitionMatrix[1][2]+=1;
-            else if (currentChar.equals("CP") && nextChar.equals("P"))
-                firstTransitionMatrix[1][3]+=1;
-            else if (currentChar.equals("WV") && nextChar.equals("V"))
-                firstTransitionMatrix[2][0]+=1;
-            else if (currentChar.equals("WC") && nextChar.equals("C"))
-                firstTransitionMatrix[2][1]+=1;
-            else if (currentChar.equals("WW") && nextChar.equals("W"))
-                firstTransitionMatrix[2][2]+=1;
-            else if (currentChar.equals("WP") && nextChar.equals("P"))
-                firstTransitionMatrix[2][3]+=1;
-            else if (currentChar.equals("PV") && nextChar.equals("V"))
-                firstTransitionMatrix[3][0]+=1;
-            else if (currentChar.equals("PC") && nextChar.equals("C"))
-                firstTransitionMatrix[3][1]+=1;
-            else if (currentChar.equals("PW") && nextChar.equals("W"))
-                firstTransitionMatrix[3][2]+=1;
-            else if (currentChar.equals("PP") && nextChar.equals("P"))
-                firstTransitionMatrix[3][3]+=1;
+            if (currentChar.equals("VV") && nextChar.equals("V")) {
+                secondTransitionMatrix[0][0] += 1;
+            } else if(currentChar.equals("VC") && nextChar.equals("C")) {
+                secondTransitionMatrix[0][1] += 1;
+            } else if (currentChar.equals("VW") && nextChar.equals("W")) {
+                secondTransitionMatrix[0][2] += 1;
+            } else if (currentChar.equals("VP") && nextChar.equals("P")) {
+                secondTransitionMatrix[0][3] += 1;
+            } else if (currentChar.equals("CV") && nextChar.equals("V")) {
+                secondTransitionMatrix[1][0] += 1;
+            } else if (currentChar.equals("CC") && nextChar.equals("C")) {
+                secondTransitionMatrix[1][1] += 1;
+            } else if (currentChar.equals("CW") && nextChar.equals("W")) {
+                secondTransitionMatrix[1][2] += 1;
+            } else if (currentChar.equals("CP") && nextChar.equals("P")) {
+                secondTransitionMatrix[1][3] += 1;
+            } else if (currentChar.equals("WV") && nextChar.equals("V")) {
+                secondTransitionMatrix[2][0] += 1;
+            } else if (currentChar.equals("WC") && nextChar.equals("C")) {
+                secondTransitionMatrix[2][1] += 1;
+            } else if (currentChar.equals("WW") && nextChar.equals("W")) {
+                secondTransitionMatrix[2][2] += 1;
+            } else if (currentChar.equals("WP") && nextChar.equals("P")) {
+                secondTransitionMatrix[2][3] += 1;
+            } else if (currentChar.equals("PV") && nextChar.equals("V")) {
+                secondTransitionMatrix[3][0] += 1;
+            } else if (currentChar.equals("PC") && nextChar.equals("C")) {
+                secondTransitionMatrix[3][1] += 1;
+            } else if (currentChar.equals("PW") && nextChar.equals("W")) {
+                secondTransitionMatrix[3][2] += 1;
+            } else if (currentChar.equals("PP") && nextChar.equals("P")) {
+                secondTransitionMatrix[3][3] += 1;
+            }
         }
     }
 
