@@ -16,6 +16,8 @@ public class Markov {
      * Transition count matrix
      */
     public int[][] firstTransitionMatrix = new int[4][4];
+
+
     public int[][] secondTransitionMatrix = new int[4][4];
 
     // given a sequence of text, this returns an list of categorized responses
