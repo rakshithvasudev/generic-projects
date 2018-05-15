@@ -113,10 +113,13 @@ public class Markov {
 
         // iterate through every character and populate
         // to the matrix
-        for (int i=1; i<groupedSequence.length()-1;i++){
+        for (int i=1; i<groupedSequence.length()-2;i++){
 
-            String currentChar = groupedSequence.substring(i-1,i);
-            String nextChar = groupedSequence.substring(i+1);
+            String currentChar = groupedSequence.substring(i-1,i+1);
+            String nextChar = groupedSequence.substring(i+1,i+2);
+
+            System.out.println(currentChar+"-"+nextChar);
+
 
             if (currentChar.equals("VV") && nextChar.equals("V"))
                 firstTransitionMatrix[0][0]+=1;
