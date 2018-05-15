@@ -118,9 +118,7 @@ public class Markov {
                 horizontalRowSum[i] += countMatrix[i][j];
             }
         }
-//        System.out.println("hrow sum: "+ Arrays.toString(horizontalRowSum));
         return horizontalRowSum;
-
     }
 
     // given a 2D countMatrix, returns a probability transition matrix
