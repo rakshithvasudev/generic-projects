@@ -6,6 +6,18 @@ import java.util.Scanner;
 
 public class Markov {
 
+    /**
+     *    v c p w
+     * v
+     * c
+     * w
+     * p
+     *
+     * Transition count matrix
+     */
+    public int[][] firstTransitionMatrix = new int[4][4];
+    public int[][] secondTransitionMatrix = new int[4][4];
+
     // given a sequence of text, this returns an list of categorized responses
     public List<Character> convertToGroups(String textSequence){
         textSequence = textSequence.toLowerCase();
@@ -48,7 +60,10 @@ public class Markov {
         return content.toString();
     }
 
+    public void populateFirstMatrix(String GroupedSequence){
 
+
+    }
 
 
 
