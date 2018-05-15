@@ -54,8 +54,8 @@ public class Markov {
             e.printStackTrace();
         }
         StringBuilder content = new StringBuilder();
-        while (scanner.hasNext()){
-            content.append(scanner.next());
+        while (scanner.hasNextLine()){
+            content.append(scanner.nextLine());
         }
         return content.toString();
     }

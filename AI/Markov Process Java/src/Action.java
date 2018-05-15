@@ -9,6 +9,7 @@ public class Action {
         String sample = mvp.readText("bible.txt");
         List<Character> lists = mvp.convertToGroups(sample);
         String groupedString = lists.toString().replace(", ","");
+//        System.out.println(groupedString);
         mvp.populateFirstMatrix(groupedString);
         mvp.populateSecondMatrix(groupedString);
         System.out.println(Arrays.deepToString(mvp.calculateProbabilites(mvp.firstTransitionMatrix)));
