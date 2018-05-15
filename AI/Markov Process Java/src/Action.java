@@ -10,7 +10,9 @@ public class Action {
         String groupedString = lists.toString().replace(", ","");
         mvp1.populateFirstMatrix(groupedString);
         mvp1.populateSecondMatrix(groupedString);
+        System.out.println("P(Xi|Xi-1):");
         System.out.println(Arrays.deepToString(mvp1.calculateProbabilites(mvp1.firstTransitionMatrix)));
+        System.out.println("P(Xi|Xi-1,Xi-2):");
         System.out.println(Arrays.deepToString(mvp1.calculateProbabilites(mvp1.secondTransitionMatrix)));
         System.out.println("Not a 1st order ");
 
@@ -22,7 +24,9 @@ public class Action {
         String groupedString2 = lists2.toString().replace(", ","");
         mvp2.populateFirstMatrix(groupedString2);
         mvp2.populateSecondMatrix(groupedString2);
+        System.out.println("P(Xi|Xi-1):");
         System.out.println(Arrays.deepToString(mvp2.calculateProbabilites(mvp2.firstTransitionMatrix)));
+        System.out.println("P(Xi|Xi-1,Xi-2):");
         System.out.println(Arrays.deepToString(mvp2.calculateProbabilites(mvp2.secondTransitionMatrix)));
         System.out.println("Not a 1st order ");
     }
