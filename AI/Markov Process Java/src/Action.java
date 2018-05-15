@@ -16,8 +16,7 @@ public class Action {
         System.out.println(Arrays.deepToString(mvp1.calculateProbabilites(mvp1.secondTransitionMatrix)));
         System.out.println("Not a 1st order ");
 
-        System.out.println("-------------------------------------------------------------------------");
-
+        System.out.println("---------------------Sample 2---------------------------------------------------");
         Markov mvp2 = new Markov();
         String sample2 = mvp2.readText("alger.txt");
         List<Character> lists2 = mvp2.convertToGroups(sample2);
