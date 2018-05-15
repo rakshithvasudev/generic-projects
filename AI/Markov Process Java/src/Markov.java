@@ -71,38 +71,40 @@ public class Markov {
             char currentChar = groupedSequence.charAt(i);
             char nextChar = groupedSequence.charAt(i+1);
 
-            if (currentChar == 'V' && nextChar=='V')
-                firstTransitionMatrix[0][0]+=1;
-            else if(currentChar == 'V' && nextChar=='C')
-                firstTransitionMatrix[0][1]+=1;
-            else if (currentChar == 'V' && nextChar=='W')
-                firstTransitionMatrix[0][2]+=1;
-            else if (currentChar == 'V' && nextChar=='P')
-                firstTransitionMatrix[0][3]+=1;
-            else if (currentChar == 'C' && nextChar=='V')
-                firstTransitionMatrix[1][0]+=1;
-            else if (currentChar == 'C' && nextChar=='C')
-                firstTransitionMatrix[1][1]+=1;
-            else if (currentChar == 'C' && nextChar=='W')
-                firstTransitionMatrix[1][2]+=1;
-            else if (currentChar == 'C' && nextChar=='P')
-                firstTransitionMatrix[1][3]+=1;
-            else if (currentChar == 'W' && nextChar=='V')
-                firstTransitionMatrix[2][0]+=1;
-            else if (currentChar == 'W' && nextChar=='C')
-                firstTransitionMatrix[2][1]+=1;
-            else if (currentChar == 'W' && nextChar=='W')
-                firstTransitionMatrix[2][2]+=1;
-            else if (currentChar == 'W' && nextChar=='P')
-                firstTransitionMatrix[2][3]+=1;
-            else if (currentChar == 'P' && nextChar=='V')
-                firstTransitionMatrix[3][0]+=1;
-            else if (currentChar == 'P' && nextChar=='C')
-                firstTransitionMatrix[3][1]+=1;
-            else if (currentChar == 'P' && nextChar=='W')
-                firstTransitionMatrix[3][2]+=1;
-            else if (currentChar == 'P' && nextChar=='P')
-                firstTransitionMatrix[3][3]+=1;
+
+            if (currentChar == 'V' && nextChar=='V') {
+                firstTransitionMatrix[0][0] += 1;
+            } else if(currentChar == 'V' && nextChar=='C') {
+                firstTransitionMatrix[0][1] += 1;
+            } else if (currentChar == 'V' && nextChar=='W') {
+                firstTransitionMatrix[0][2] += 1;
+            } else if (currentChar == 'V' && nextChar=='P') {
+                firstTransitionMatrix[0][3] += 1;
+            } else if (currentChar == 'C' && nextChar=='V') {
+                firstTransitionMatrix[1][0] += 1;
+            } else if (currentChar == 'C' && nextChar=='C') {
+                firstTransitionMatrix[1][1] += 1;
+            } else if (currentChar == 'C' && nextChar=='W') {
+                firstTransitionMatrix[1][2] += 1;
+            } else if (currentChar == 'C' && nextChar=='P') {
+                firstTransitionMatrix[1][3] += 1;
+            } else if (currentChar == 'W' && nextChar=='V') {
+                firstTransitionMatrix[2][0] += 1;
+            } else if (currentChar == 'W' && nextChar=='C') {
+                firstTransitionMatrix[2][1] += 1;
+            } else if (currentChar == 'W' && nextChar=='W') {
+                firstTransitionMatrix[2][2] += 1;
+            } else if (currentChar == 'W' && nextChar=='P') {
+                firstTransitionMatrix[2][3] += 1;
+            } else if (currentChar == 'P' && nextChar=='V') {
+                firstTransitionMatrix[3][0] += 1;
+            } else if (currentChar == 'P' && nextChar=='C') {
+                firstTransitionMatrix[3][1] += 1;
+            } else if (currentChar == 'P' && nextChar=='W') {
+                firstTransitionMatrix[3][2] += 1;
+            } else if (currentChar == 'P' && nextChar=='P') {
+                firstTransitionMatrix[3][3] += 1;
+            }
         }
     }
 
