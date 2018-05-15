@@ -104,9 +104,11 @@ public class Markov {
             else if (currentChar == 'P' && nextChar=='P')
                 firstTransitionMatrix[3][3]+=1;
         }
-
     }
 
 
+    public void calculateProbabilites(){
+
+    }
 
 }
