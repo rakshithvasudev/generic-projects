@@ -1,6 +1,8 @@
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -107,8 +109,34 @@ public class Markov {
     }
 
 
-    public void calculateProbabilites(){
+    // given a 2D Matrix, returns the sum of rows
+    public int[] calcRowSum(int[][] countMatrix){
+        // find the sum of rows
+        int[] horizontalRowSum = new int[countMatrix.length] ;
+        for (int i=0;i<countMatrix.length;i++){
+            for (int j=0;j<countMatrix[i].length;j++) {
+                horizontalRowSum[i] += countMatrix[i][j];
+            }
+        }
+//        System.out.println("hrow sum: "+ Arrays.toString(horizontalRowSum));
+        return horizontalRowSum;
 
+    }
+
+    // given a 2D countMatrix, returns a probability transition matrix
+    public float [][] calculateProbabilites(int[][] countMatrix){
+        float[][] pMatrix = new float [countMatrix.length][countMatrix[0].length];
+        int[] hrowSum = calcRowSum(countMatrix);
+
+        // divide every element with the row sum
+        for (int i=0;i<countMatrix.length;i++){
+            for (int j=0;j<countMatrix[i].length;j++) {
+                if (hrowSum[i]==0)
+                    continue;
+                pMatrix[i][j] = (float)countMatrix[i][j]/hrowSum[i];
+            }
+        }
+        return pMatrix;
     }
 
 }
