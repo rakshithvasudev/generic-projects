@@ -11,11 +11,6 @@ public class Action {
         String groupedString = lists.toString().replace(", ","");
         mvp.populateFirstMatrix(groupedString);
         mvp.populateSecondMatrix(groupedString);
-//        System.out.println(Arrays.deepToString(mvp.firstTransitionMatrix));
-//        System.out.println(groupedString.length());
-//        System.out.println(lists.size());
-
-
         System.out.println(Arrays.deepToString(mvp.calculateProbabilites(mvp.firstTransitionMatrix)));
         System.out.println(Arrays.deepToString(mvp.calculateProbabilites(mvp.secondTransitionMatrix)));
     }

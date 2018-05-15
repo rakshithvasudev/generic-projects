@@ -115,6 +115,7 @@ public class Markov {
         // to the matrix
         for (int i=1; i<groupedSequence.length()-2;i++){
 
+            // .substring() bounds are (inclusive, exclusive)
             String currentChar = groupedSequence.substring(i-1,i+1);
             String nextChar = groupedSequence.substring(i+1,i+2);
 
